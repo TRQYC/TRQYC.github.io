@@ -286,7 +286,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://trqyc.me/2017/06/07/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://trqyc.me/2017/05/24/HTTP TCP IP协议分析/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="TRQYC">
@@ -305,7 +305,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/06/07/hello-world/" itemprop="url">Hello World</a></h1>
+                <a class="post-title-link" href="/2017/05/24/HTTP TCP IP协议分析/" itemprop="url">Wireshark HTTP LAB</a></h1>
         
 
         <div class="post-meta">
@@ -317,8 +317,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-07T08:50:11+08:00">
-                2017-06-07
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-24T14:42:00+08:00">
+                2017-05-24
               </time>
             
 
@@ -354,17 +354,955 @@
       
         
           
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+            <h2 id="1-HTTP，TCP，IP协议的分析"><a href="#1-HTTP，TCP，IP协议的分析" class="headerlink" title="1.HTTP，TCP，IP协议的分析"></a>1.HTTP，TCP，IP协议的分析</h2><h3 id="实验前的准备"><a href="#实验前的准备" class="headerlink" title="实验前的准备"></a>实验前的准备</h3><p>打开浏览器，键入URL：<a href="http://gaia.cs.umass.edu/wireshark-labs/HTTP-wireshark-file4.html。" target="_blank" rel="external">http://gaia.cs.umass.edu/wireshark-labs/HTTP-wireshark-file4.html。</a></p>
+<p>我们得到如下图所示的网页界面。正如网页上所说。这个网页包含2个图片</p>
+<p><img src="http://on25dlxh3.bkt.clouddn.com/17-5-23/9148174-file_1495548759408_16013.png" alt=""></p>
+<p>同时，我们的Wireshark抓包工具抓取了如下图所示的信息</p>
+<p><img src="http://on25dlxh3.bkt.clouddn.com/17-5-23/59778587-file_1495548848429_bf70.png" alt=""></p>
+<h3 id="创建TCP连接的三次握手以及TCP协议分析"><a href="#创建TCP连接的三次握手以及TCP协议分析" class="headerlink" title="创建TCP连接的三次握手以及TCP协议分析"></a>创建TCP连接的三次握手以及TCP协议分析</h3><p><strong>第一次握手</strong> 查看如下图所示的第一个TCP报文段内容</p>
+<p><img src="http://on25dlxh3.bkt.clouddn.com/17-5-23/6677722-file_1495549028238_3fa6.png" alt=""></p>
+<p>源端口号为4307，目的端口号为80，初始序号为0，数据段长度为0。</p>
+<p>FLAG字段为0x002,SYN比特置为1，表示客户端想要与服务器建立一个TCP连接。</p>
+<p>首部长度为28个字节，因为选项字段占用了8个字节，选项字段中客户端与服务器协调MSS为1460字节。</p>
+<p><strong>第二次握手</strong>查看如下图所示的TCP报文段内容</p>
+<p><img src="http://on25dlxh3.bkt.clouddn.com/2017-05-24-63808.jpg" alt="QQ20170523-223032"></p>
+<p>window size value字段表明服务器接收窗口大小为5850字节</p>
+<p>服务器初始序号为0，ACK：1表明服务器期待接受的下一个客户端发送的TCP报文段序号为1.确认了第一次握手发送的报文。</p>
+<p><strong>第三次握手</strong>查看如下图所示的TCP报文段内容</p>
+<p><img src="http://on25dlxh3.bkt.clouddn.com/2017-05-24-063810.jpg" alt="QQ20170523-223436"></p>
+<p>最后一次握手这个报文段。序号为1，ACK为1表明客户端确认了服务器允许连接的报文段。因为连接已经建立了。所以SYN比特置为0.</p>
+<p>至此。三次握手结束。成功建立TCP连接。</p>
+<h4 id="HTTP协议分析"><a href="#HTTP协议分析" class="headerlink" title="HTTP协议分析"></a>HTTP协议分析</h4><p><img src="http://on25dlxh3.bkt.clouddn.com/2017-05-24-063807.jpg" alt="QQ20170523-223829"></p>
+<p>源IP为192.168.1.102，目的IP为128.119.245.12</p>
+<p>分析HTTP报文内容（如上图所示）</p>
+<p>GET方法字段指明了客户端要请求的资源URL，Host字段内容表明服务器主机是gaia.cs.umass.edu，User-Agent字段提供了客户主机的一些信息，浏览器默认接受的语言是en-us，HTTP版本是HTTP／1.1。保持TCP连接不断开</p>
+<p>分析服务器返回给客户端的报文（如下图所示）。<img src="http://on25dlxh3.bkt.clouddn.com/2017-05-24-063808.jpg" alt="QQ20170523-224624"></p>
+<p>服务器返回的状态码是200表明请求成功。查看数据部分内容。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Line-based text data: text/html</div><div class="line">    &lt;html&gt;\n</div><div class="line">    &lt;head&gt;\n</div><div class="line">    &lt;title&gt;Lab2-4 file: Embedded URLs&lt;/title&gt;\n</div><div class="line">    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=iso-8859-1&quot;&gt;\n</div><div class="line">    &lt;/head&gt;\n</div><div class="line">    \n</div><div class="line">    &lt;body bgcolor=&quot;#FFFFFF&quot; text=&quot;#000000&quot;&gt;\n</div><div class="line">    \n</div><div class="line">    &lt;p&gt;\n</div><div class="line">    &lt;img src=&quot;http://www.aw-bc.com/catalog/images/pearson-logo-footer.gif&quot; WIDTH=&quot;70&quot; HEIGHT=&quot;41&quot; &gt; &lt;/p&gt;\n</div><div class="line">    &lt;p&gt;This little HTML file is being served by gaia.cs.umass.edu. &lt;br&gt;\n</div><div class="line">    It contains two embedded images. The image above, from the web site of &lt;br&gt;\n</div><div class="line">    our publisher, is served by the server www.pearsoned.com.  The image of our &lt;br&gt;\n</div><div class="line">    book below is stored at the www server manic.cs.umass.edu:&lt;/p&gt;\n</div><div class="line">    &lt;p align=&quot;left&quot;&gt;&lt;img src=&quot;http://manic.cs.umass.edu/~kurose/cover.jpg&quot; width=&quot;168&quot; height=&quot;220&quot;&gt;&lt;/p&gt;\n</div><div class="line">    &lt;/body&gt;\n</div><div class="line">    &lt;/html&gt;\n</div></pre></td></tr></table></figure>
+<p>注意到该页面引用了2个图片。</p>
+<p>客户端为这2个图片并行设置TCP连接。如下图所示。端口分别为4308与4309<img src="http://on25dlxh3.bkt.clouddn.com/2017-05-24-63811.jpg" alt="QQ20170523-225311"></p>
+<h4 id="IP协议分析"><a href="#IP协议分析" class="headerlink" title="IP协议分析"></a>IP协议分析</h4><p>我们以服务器发送给客户端的第一次响应HTTP报文为例。分析其IP协议内容。报文内容如下</p>
+<p><img src="http://on25dlxh3.bkt.clouddn.com/2017-05-24-063758.jpg" alt="QQ20170523-225733"></p>
+<p>IP版本为4，头部长度20字节。总长度1043字节。标识符为29771，标志字段为0x744b表明此IP不分段。偏移值为0，存活跳数为55，上层协议报文为TCP。</p>
 
           
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://trqyc.me/2017/05/22/网络复习/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="TRQYC">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TRQYC">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/22/网络复习/" itemprop="url">计算机网络复习四-网络层</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-22T20:20:00+08:00">
+                2017-05-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <html><br><head><br><title>网络层 - 幕布</title><br><meta charset="utf-8"><br><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><br><meta name="renderer" content="webkit"><br><meta name="author" content="mubu.com"><br></head><br><body style="margin: 50px 20px;color: #333;font-family: 'Helvetica Neue','Hiragino Sans GB','WenQuanYi Micro Hei','Microsoft Yahei',sans-serif;"><br><div class="export-wrapper"><div style="font-size: 24px; padding: 20px 15px 0;"><div style="padding-bottom: 10px">网络层</div><div style="background: #e5e6e8; height: 1px; margin-bottom: 20px;"></div></div><ul style="list-style: disc outside;"><li style="line-height: 22px;"><span class="content mubu-node" style="line-height: 22px; min-height: 22px; font-size: 14px; display: inline-block; vertical-align: top;">概述</span><ul class="children" style="list-style: disc outside; padding-bottom: 4px;"><li style="line-height: 22px;"><span class="content mubu-node" style="line-height: 22px; min-height: 22px; font-size: 14px; display: inline-block; vertical-align: top;">2个主要功能：转发与路由选择routing</span><ul class="children" style="list-style: disc outside; padding-bottom: 4px;"><li style="line-height: 22px;"><span class="content mubu-node" style="line-height: 22px; min-height: 22px; font-size: 14px; display: inline-block; vertical-align: top;">转发表</span><ul class="children" style="list-style: disc outside; padding-bottom: 4px;"><li style="line-height: 22px;"><span class="content mubu-node" style="line-height: 22px; min-height: 22px; font-size: 14px; display: inline-block; vertical-align: top;">路由选择算法</span></li><li style="line-height: 22px;"><span class="content mubu-node" style="line-height: 22px; min-height: 22px; font-size: 14px; display: inline-block; vertical-align: top;">路由选择协议报文</span></li></ul></li><li style="line-height: 22px;"><span class="content mubu-node" style="line-height: 22px; min-height: 22px; font-size: 14px; display: inline-block; vertical-align: top;">第三种功能：连接建立connection setup</span></li></ul></li><li style="line-height: 22px;"><span class="content mubu-node" style="line-height: 22px; min-height: 22px; font-size: 14px; display: inline-block; vertical-align: top;">网络服务模型</span><ul class="children" style="list-style: disc outside; padding-bottom: 4px;"><li style="line-height: 22px;"><span class="content mubu-node" style="line-height: 22px; min-height: 22px; font-size: 14px; display: inline-block; vertical-align: top;">网络层可以提供的服务有</span><ul class="children" style="list-style: disc outside; padding-bottom: 4px;"><li style="line-height: 22px;"><span class="content mubu-node" style="line-height: 22px; min-height: 22px; font-size: 14px; display: inline-block; vertical-align: top;">确保交付</span></li><li style="line-height: 22px;"><span class="content mubu-node" style="line-height: 22px; min-height: 22px; font-size: 14px; display: inline-block; vertical-align: top;">具有时延上界的确保交付</span></li><li style="line-height: 22px;"><span class="content mubu-node" style="line-height: 22px; min-height: 22px; font-size: 14px; display: inline-block; vertical-align: top;">有序分组交付</span></li><li style="line-height: 22px;"><span class="content mubu-node" style="line-height: 22px; min-height: 22px; font-size: 14px; display: inline-block; vertical-align: top;">确保最小带宽</span></li><li style="line-height: 22px;"><span class="content mubu-node" style="line-height: 22px; min-height: 22px; font-size: 14px; display: inline-block; vertical-align: top;">确保最大时延抖动</span></li><li style="line-height: 22px;"><span class="content mubu-node" style="line-height: 22px; min-height: 22px; font-size: 14px; display: inline-block; vertical-align: top;">安全性服务</span></li></ul></li><li style="line-height: 22px;"><span class="content mubu-node" style="line-height: 22px; min-height: 22px; font-size: 14px; display: inline-block; vertical-align: top;">因特网的网络层只提供尽力而为服务</span></li><li style="line-height: 22px;"><span class="content mubu-node" style="line-height: 22px; min-height: 22px; font-size: 14px; display: inline-block; vertical-align: top;">ABR ATM网络服务</span></li><li style="line-height: 22px;"><span class="content mubu-node" style="line-height: 22px; min-height: 22px; font-size: 14px; display: inline-block; vertical-align: top;">CBR ATM网络服务</span></li></ul></li></ul></li><li style="line-height: 22px;"><span class="content mubu-node" style="line-height: 22px; min-height: 22px; font-size: 14px; display: inline-block; vertical-align: top;">虚电报和数据报网络</span><ul class="children" style="list-style: disc outside; padding-bottom: 4px;"><li style="line-height: 22px;"><span class="content mubu-node" style="line-height: 22px; min-height: 22px; font-size: 14px; display: inline-block; vertical-align: top;">网络层：主机到主机的连接或无连接服务</span></li><li style="line-height: 22px;"><span class="content mubu-node" style="line-height: 22px; min-height: 22px; font-size: 14px; display: inline-block; vertical-align: top;">虚电报：连接服务。数据包：无连接服务</span></li><li style="line-height: 22px;"><span class="content mubu-node" style="line-height: 22px; min-height: 22px; font-size: 14px; display: inline-block; vertical-align: top;">虚电报网络 virtual-Circuit</span><ul class="children" style="list-style: disc outside; padding-bottom: 4px;"><li style="line-height: 22px;"><span class="content mubu-node" style="line-height: 22px; min-height: 22px; font-size: 14px; display: inline-block; vertical-align: top;">许多其他网络体系结构例如ATM是VC网络</span></li><li style="line-height: 22px;"><span class="content mubu-node" style="line-height: 22px; min-height: 22px; font-size: 14px; display: inline-block; vertical-align: top;">VC的组成</span><ul class="children" style="list-style: disc outside; padding-bottom: 4px;"><li style="line-height: 22px;"><span class="content mubu-node" style="line-height: 22px; min-height: 22px; font-size: 14px; display: inline-block; vertical-align: top;">1.源和目的地的一系列路径</span></li><li style="line-height: 22px;"><span class="content mubu-node" style="line-height: 22px; min-height: 22px; font-size: 14px; display: inline-block; vertical-align: top;">2.VC号，沿着该路径的每段链路的一个号码</span></li><li style="line-height: 22px;"><span class="content mubu-node" style="line-height: 22px; min-height: 22px; font-size: 14px; display: inline-block; vertical-align: top;">3.沿着该路径的每个路由器的转发表</span></li></ul></li><li style="line-height: 22px;"><span class="content mubu-node" style="line-height: 22px; min-height: 22px; font-size: 14px; display: inline-block; vertical-align: top;">每个链路不使用相同的VC号的原因见课本P208</span></li><li style="line-height: 22px;"><span class="content mubu-node" style="line-height: 22px; min-height: 22px; font-size: 14px; display: inline-block; vertical-align: top;">！VC网络中的路由器必须为进行中的连接维维持连接状态信息</span><ul class="children" style="list-style: disc outside; padding-bottom: 4px;"><li style="line-height: 22px;"><span class="content mubu-node" style="line-height: 22px; min-height: 22px; font-size: 14px; display: inline-block; vertical-align: top;">每当跨越一个路由器创建一个新连接，转发表增加一个表项，释放一个连接，删除表项</span></li></ul></li><li style="line-height: 22px;"><span class="content mubu-node" style="line-height: 22px; min-height: 22px; font-size: 14px; display: inline-block; vertical-align: top;">3个阶段</span><ul class="children" style="list-style: disc outside; padding-bottom: 4px;"><li style="line-height: 22px;"><span class="content mubu-node" style="line-height: 22px; min-height: 22px; font-size: 14px; display: inline-block; vertical-align: top;">虚电路建立（掌握具体细节见课本P208）</span></li><li style="line-height: 22px;"><span class="content mubu-node" style="line-height: 22px; min-height: 22px; font-size: 14px; display: inline-block; vertical-align: top;">数据传送</span></li><li style="line-height: 22px;"><span class="content mubu-node" style="line-height: 22px; min-height: 22px; font-size: 14px; display: inline-block; vertical-align: top;">虚电路拆除</span></li></ul></li><li style="line-height: 22px;"><span class="content mubu-node" style="line-height: 22px; min-height: 22px; font-size: 14px; display: inline-block; vertical-align: top;">网络层虚电路的建立与运输层的连接建立的不同</span></li><li style="line-height: 22px;"><span class="content mubu-node" style="line-height: 22px; min-height: 22px; font-size: 14px; display: inline-block; vertical-align: top;">signaling message and signaling protocol</span><ul class="children" style="list-style: disc outside; padding-bottom: 4px;"><li style="line-height: 22px;"><span class="content mubu-node" style="line-height: 22px; min-height: 22px; font-size: 14px; display: inline-block; vertical-align: top;">端系统向网络发送指示虚电路启动与终止的报文以及路由器之间传递的用于建立虚电路的报文</span></li></ul></li></ul></li>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/05/22/网络复习/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://trqyc.me/2017/05/20/Problems/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="TRQYC">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TRQYC">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/20/Problems/" itemprop="url">Interesting Problems</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-20T21:29:00+08:00">
+                2017-05-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>此文用于我在学习过程中遇见的一些问题，而这些问题又无法通过搜索引擎得到答案，在此写出，如果您有合理的解释，请在评论中指出。谢谢。<br>Problem 1  </p>
+<blockquote>
+<p>UPnP,Dos,IPv6<br>对于这些专业名词的缩写。哪些字母（单词）该小写的规则是？</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://trqyc.me/2017/04/12/MAC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="TRQYC">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TRQYC">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/04/12/MAC/" itemprop="url">MAC必装软件</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-12T11:48:30+08:00">
+                2017-04-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>HyperDock </p>
+<blockquote>
+<p>给你的软件增加类似于WIN的小窗口功能，当你一次性启动一个软件的多个进程时，很方便寻找。</p>
+</blockquote>
+<p>Alfred </p>
+<blockquote>
+<p>神器了，不说啥废话了，详情谷歌</p>
+</blockquote>
+<p>Popclip </p>
+<blockquote>
+<p>选取文本弹出菜单可进行快捷操作</p>
+</blockquote>
+<p>Macvim</p>
+<blockquote>
+<p>最强文本编辑器</p>
+</blockquote>
+<p>Typora </p>
+<blockquote>
+<p>最强markdown编辑器</p>
+</blockquote>
+<p>TotalFinder</p>
+<blockquote>
+<p>取代自带的辣鸡资源管理器</p>
+</blockquote>
+<p>HyperDock</p>
+<blockquote>
+<p>Dock程序窗口化</p>
+</blockquote>
+<p>Iterm2</p>
+<blockquote>
+<p>终端</p>
+</blockquote>
+<p>JiTouch</p>
+<blockquote>
+<p>增强触控板，快速关闭chrome标签页</p>
+</blockquote>
+<p>Homebrew</p>
+<blockquote>
+<p>安装程序很方便</p>
+</blockquote>
+<p>ipic</p>
+<blockquote>
+<p>上传图片到图床</p>
+</blockquote>
+<p>欧陆字典<br>PDF Expert<br>网易云音乐</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://trqyc.me/2017/04/09/纠错/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="TRQYC">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TRQYC">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/04/09/纠错/" itemprop="url">计算机网络勘误</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-09T12:02:00+08:00">
+                2017-04-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>边读边更新，对应中文版本第六版，由于时间与水平的限制，如有漏掉的错误请指出。</p>
+</blockquote>
+<p>P21，举的例子中。每条链路具有的速率是1.536Mbps/24=64kbps.这里应该是电路。而不是链路。</p>
+<p>P48，R19b.4000000B不是4MB。</p>
+<p>P49，P4，链路上有4条电路，不是链路</p>
+<p>P49，P6f,dprop不是dproc<br>P197，P38，当出现丢包事件时，发送方发送的速率，每个RTT必须大约等于cwnd报文段吗？应该翻译为：发送方发送的速率大约等于CWND报文段/RTT吗？<br>英文原文为：Must the rate at which the sender is sending when the loss event occurred be approximately equal to cwnd segments per RTT?  </p>
+<p>P280，P2c.建议看英文</p>
+<p>P280，P4 a.显示 改成 写出</p>
+<p>P280，P4b.这是一个技巧问题 改成 这是一个欺骗性问题<br>P283，P20 5MB组成的MP3 改成 5000000B组成的MP3<br>P</p>
+<p>推荐阅读</p>
+<p><a href="http://www.h3c.com.cn/MiniSite/Technology_Circle/Net_Reptile/The_Five/Home/Catalog/201206/747035_97665_0.htm" target="_blank" rel="external">p2p and NAT</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://trqyc.me/2017/03/30/DB-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="TRQYC">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TRQYC">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/03/30/DB-1/" itemprop="url">Good questions about DB</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-30T13:21:06+08:00">
+                2017-03-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><img src="http://on25dlxh3.bkt.clouddn.com/17-3-30/94140303-file_1490849095749_4737.png" alt="">hex</p>
+<blockquote>
+<p>这道题目要注意，C1，C2中给出的事务顺序不可变，所以答案为4*3*2/4</p>
+</blockquote>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/03/30/DB-1/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://trqyc.me/2017/03/19/一些资源/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="TRQYC">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TRQYC">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/03/19/一些资源/" itemprop="url">CS资源</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-19T17:25:00+08:00">
+                2017-03-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <hr>
+<h2 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h2><p>textbook:《计算机网络自顶向下》</p>
+<blockquote>
+<p>此书习题部分因为是小学生翻译。含有很多翻译错误。谨慎食用</p>
+</blockquote>
+<p><a href="http://www-net.cs.umass.edu/wireshark-labs/" target="_blank" rel="external">wireshark lab</a>  </p>
+<p><a href="http://cs168.io/index.html" target="_blank" rel="external">ucb cs168</a><br><a href="http://www.cs.sjtu.edu.cn/~yzhu%20%20%20/courses/comnet/index.html" target="_blank" rel="external">sjtu课程主页</a>  </p>
+<p><a href="http://web.stanford.edu/class/cs244a/" target="_blank" rel="external">stanford cs244a</a></p>
+<p><a href="https://www.ipip.net/" target="_blank" rel="external">国内的一个IP查询相关网站</a></p>
+<p><a href="http://wps.pearsoned.com/ecs_kurose_compnetw_6/216/55463/14198700.cw/index.html" target="_blank" rel="external">自顶向下方法图书配套网站</a><br><a href="http://www-net.cs.umass.edu/kurose-ross-ppt-7e/" target="_blank" rel="external">图书slides</a><br><a href="http://gaia.cs.umass.edu/kurose_ross/interactive/" target="_blank" rel="external">图书exercises</a></p>
+<p><a href="http://networks.cs.northwestern.edu/EECS340-w16/syllabus.php" target="_blank" rel="external">西北大学 EECS340</a></p>
+<p><a href="https://lagunita.stanford.edu/courses/Engineering/Networking-SP/SelfPaced/info" target="_blank" rel="external">stanford MOOC</a></p>
+<h5 id="期末复习各章知识点总结"><a href="#期末复习各章知识点总结" class="headerlink" title="期末复习各章知识点总结"></a>期末复习各章知识点总结</h5><p><a href="https://mubu.com/doc/lwbytq48q" target="_blank" rel="external">运输层</a></p>
+<p><a href="https://mubu.com/doc/fqtyWApMW" target="_blank" rel="external">网络层</a></p>
+<p><a href="https://mubu.com/doc/nF3OFz-8q" target="_blank" rel="external">链路层</a></p>
+<h2 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h2><p>textbook:《a first course in databaes systems》+数据库系统概念</p>
+<p><a href="http://www.cs.sjtu.edu.cn/~li-fang/DB.htm" target="_blank" rel="external">sjtu课程主页</a>  //sjtu的slides。挺不错的。教材是《a first courese in database systems》</p>
+<p><a href="">stanford</a>  ／／斯坦福的MOOC。配合Sjtu slides使用效果更佳</p>
+<h2 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h2><p>textbook:《modern operating systems》</p>
+<blockquote>
+<p>推荐《操作系统概念》  </p>
+</blockquote>
+<p><a href="http://www.xuetangx.com/courses/course-v1:TsinghuaX+30240243X+sp/courseware/7cc23a07bfd24dadae4d3797347815f1/91356b2d303e430b80548cb934462e16/" target="_blank" rel="external">TSU MOOC</a><br><a href="https://pdos.csail.mit.edu/6.828/2016/schedule.html" target="_blank" rel="external">xv6@MIT</a><br><a href="http://grid.hust.edu.cn/zyshao/OSEngineering.htm" target="_blank" rel="external">6.828华科课程主页</a><br><a href="http://www.cnblogs.com/fatsheep9146/category/769143.html" target="_blank" rel="external">6.828博客</a><br><a href="http://blog.csdn.net/cinmyheart/article/details/45150461" target="_blank" rel="external">其他资源</a></p>
+<p><a href="http://www.aqualab.cs.northwestern.edu/class/331-eecs-343-f16#info" target="_blank" rel="external">EECS343</a> </p>
+<p><a href="https://inst.eecs.berkeley.edu/~cs162/sp15/" target="_blank" rel="external">ucb cs162</a> </p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/03/19/一些资源/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://trqyc.me/2017/02/02/《为什么学生讨厌上学》/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="TRQYC">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TRQYC">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/02/02/《为什么学生讨厌上学》/" itemprop="url">《为什么学生不喜欢上学》读书笔记</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-02T21:05:17+08:00">
+                2017-02-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/读书笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">读书笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="为什么学生不喜欢上学"><a href="#为什么学生不喜欢上学" class="headerlink" title="为什么学生不喜欢上学"></a>为什么学生不喜欢上学</h1><blockquote>
+<p>人天生就有好奇心，但我们不是天生的杰出思想者，除非认知环境复合一定的要求，否则我们会尽可能的避免思考</p>
+</blockquote>
+<h3 id="大脑尽可能的的躲避思考"><a href="#大脑尽可能的的躲避思考" class="headerlink" title="大脑尽可能的的躲避思考"></a>大脑尽可能的的躲避思考</h3><ul>
+<li>一些最重要的功能不需要思考  </li>
+<li>人体倾向于使用记忆而不是思考指导行动,不断的重复同一项任务，会内化为习惯  </li>
+</ul>
+<h3 id="好奇心与生俱来，但很脆弱"><a href="#好奇心与生俱来，但很脆弱" class="headerlink" title="好奇心与生俱来，但很脆弱"></a>好奇心与生俱来，但很脆弱</h3><ul>
+<li>脑力活动吸引我们因为给了我们体验成功的愉悦的机会，但不是所有的脑力活动都吸引我们</li>
+<li>是内容驱动我们的兴趣，问题的困难程度影响了我们对于不同脑力活动的看法  </li>
+<li>思考是缓慢的，费力的，不确定的
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/02/02/《为什么学生讨厌上学》/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -442,14 +1380,32 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
           
 
           
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
 
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
           
 
         </nav>
