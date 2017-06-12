@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="cs," />
 
 
 
@@ -93,15 +93,17 @@
 
 
 
-<meta name="description" content="haha">
-<meta property="og:type" content="website">
-<meta property="og:title" content="TRQYC">
-<meta property="og:url" content="http://trqyc.me/tags/开发/index.html">
+<meta name="description" content="##网络层  TCP中长度字段为首部长度，UDP中长度字段为UDP首部长度（8字节）加数据长度  层次化路由选择的作用输入端口，输出端口需要缓冲区的原因MTU与MSSMTU：可以传输的最大IP报文（包含IP头部，但不包含协议栈更下层的头部），典型值为1500字节。 MSS：最大报文段长度。不包含TCP头部信息。典型值为1460字节（因为MTU典型值为1500字节。去除IP头部，TCP头部（如果没有">
+<meta name="keywords" content="cs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机网络疑难点">
+<meta property="og:url" content="http://trqyc.me/2017/06/12/计算机网络复习/index.html">
 <meta property="og:site_name" content="TRQYC">
-<meta property="og:description" content="haha">
+<meta property="og:description" content="##网络层  TCP中长度字段为首部长度，UDP中长度字段为UDP首部长度（8字节）加数据长度  层次化路由选择的作用输入端口，输出端口需要缓冲区的原因MTU与MSSMTU：可以传输的最大IP报文（包含IP头部，但不包含协议栈更下层的头部），典型值为1500字节。 MSS：最大报文段长度。不包含TCP头部信息。典型值为1460字节（因为MTU典型值为1500字节。去除IP头部，TCP头部（如果没有">
+<meta property="og:updated_time" content="2017-06-12T13:29:42.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="TRQYC">
-<meta name="twitter:description" content="haha">
+<meta name="twitter:title" content="计算机网络疑难点">
+<meta name="twitter:description" content="##网络层  TCP中长度字段为首部长度，UDP中长度字段为UDP首部长度（8字节）加数据长度  层次化路由选择的作用输入端口，输出端口需要缓冲区的原因MTU与MSSMTU：可以传输的最大IP报文（包含IP头部，但不包含协议栈更下层的头部），典型值为1500字节。 MSS：最大报文段长度。不包含TCP头部信息。典型值为1460字节（因为MTU典型值为1500字节。去除IP头部，TCP头部（如果没有">
 
 
 
@@ -129,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="http://trqyc.me/tags/开发/"/>
+  <link rel="canonical" href="http://trqyc.me/2017/06/12/计算机网络复习/"/>
 
 
 
 
 
-  <title>Tag: 开发 | TRQYC</title>
+  <title>计算机网络疑难点 | TRQYC</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -180,7 +182,7 @@
     
   
 
-  <div class="container sidebar-position-left  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -274,44 +276,159 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h1>开发<small>Tag</small>
-      </h1>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://trqyc.me/2017/06/12/计算机网络复习/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="TRQYC">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TRQYC">
+    </span>
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">计算机网络疑难点</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-12T21:29:17+08:00">
+                2017-06-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+      
+        <p>##网络层</p>
+<ul>
+<li>TCP中长度字段为首部长度，UDP中长度字段为UDP首部长度（8字节）加数据长度</li>
+</ul>
+<h4 id="层次化路由选择的作用"><a href="#层次化路由选择的作用" class="headerlink" title="层次化路由选择的作用"></a>层次化路由选择的作用</h4><h4 id="输入端口，输出端口需要缓冲区的原因"><a href="#输入端口，输出端口需要缓冲区的原因" class="headerlink" title="输入端口，输出端口需要缓冲区的原因"></a>输入端口，输出端口需要缓冲区的原因</h4><h4 id="MTU与MSS"><a href="#MTU与MSS" class="headerlink" title="MTU与MSS"></a>MTU与MSS</h4><p>MTU：可以传输的最大IP报文（包含IP头部，但不包含协议栈更下层的头部），典型值为1500字节。</p>
+<p>MSS：最大报文段长度。不包含TCP头部信息。典型值为1460字节（因为MTU典型值为1500字节。去除IP头部，TCP头部（如果没有选项的话）。就是1460字节。</p>
+<h4 id="子网掩码作用"><a href="#子网掩码作用" class="headerlink" title="子网掩码作用"></a>子网掩码作用</h4><p>将局域网IP地址与上子网掩码。如果2台主机所得的结果相同。则处于同一子网之中</p>
+<h4 id="常见应用端口"><a href="#常见应用端口" class="headerlink" title="常见应用端口"></a>常见应用端口</h4>
+      
+    </div>
 
-      <h2 class="post-title">
+    <div>
+      
         
-            <a class="post-title-link" href="/2017/04/12/MAC/" itemprop="url">
-              
-                <span itemprop="name">MAC必装软件</span>
-              
-            </a>
+
+      
+    </div>
+
+    <div>
+      
         
-      </h2>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-04-12T11:48:30+08:00"
-              content="2017-04-12" >
-          04-12
-        </time>
-      </div>
+      
+    </div>
 
-    </header>
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/cs/" rel="tag"># cs</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/08/信息安全数学复习/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </div>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -319,6 +436,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -338,8 +459,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -426,6 +556,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#层次化路由选择的作用"><span class="nav-number">1.</span> <span class="nav-text">层次化路由选择的作用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输入端口，输出端口需要缓冲区的原因"><span class="nav-number">2.</span> <span class="nav-text">输入端口，输出端口需要缓冲区的原因</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MTU与MSS"><span class="nav-number">3.</span> <span class="nav-text">MTU与MSS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#子网掩码作用"><span class="nav-number">4.</span> <span class="nav-text">子网掩码作用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常见应用端口"><span class="nav-number">5.</span> <span class="nav-text">常见应用端口</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -559,10 +705,10 @@
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
 
-  
+
 
   
 

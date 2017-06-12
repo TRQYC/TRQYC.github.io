@@ -286,7 +286,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://trqyc.me/2017/05/24/HTTP TCP IP协议分析/">
+    <link itemprop="mainEntityOfPage" href="http://trqyc.me/2017/06/12/计算机网络复习/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="TRQYC">
@@ -305,7 +305,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/05/24/HTTP TCP IP协议分析/" itemprop="url">Wireshark HTTP LAB</a></h1>
+                <a class="post-title-link" href="/2017/06/12/计算机网络复习/" itemprop="url">计算机网络疑难点</a></h1>
         
 
         <div class="post-meta">
@@ -317,8 +317,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-24T14:42:00+08:00">
-                2017-05-24
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-12T21:29:17+08:00">
+                2017-06-12
               </time>
             
 
@@ -354,36 +354,154 @@
       
         
           
-            <h2 id="1-HTTP，TCP，IP协议的分析"><a href="#1-HTTP，TCP，IP协议的分析" class="headerlink" title="1.HTTP，TCP，IP协议的分析"></a>1.HTTP，TCP，IP协议的分析</h2><h3 id="实验前的准备"><a href="#实验前的准备" class="headerlink" title="实验前的准备"></a>实验前的准备</h3><p>打开浏览器，键入URL：<a href="http://gaia.cs.umass.edu/wireshark-labs/HTTP-wireshark-file4.html。" target="_blank" rel="external">http://gaia.cs.umass.edu/wireshark-labs/HTTP-wireshark-file4.html。</a></p>
-<p>我们得到如下图所示的网页界面。正如网页上所说。这个网页包含2个图片</p>
-<p><img src="http://on25dlxh3.bkt.clouddn.com/17-5-23/9148174-file_1495548759408_16013.png" alt=""></p>
-<p>同时，我们的Wireshark抓包工具抓取了如下图所示的信息</p>
-<p><img src="http://on25dlxh3.bkt.clouddn.com/17-5-23/59778587-file_1495548848429_bf70.png" alt=""></p>
-<h3 id="创建TCP连接的三次握手以及TCP协议分析"><a href="#创建TCP连接的三次握手以及TCP协议分析" class="headerlink" title="创建TCP连接的三次握手以及TCP协议分析"></a>创建TCP连接的三次握手以及TCP协议分析</h3><p><strong>第一次握手</strong> 查看如下图所示的第一个TCP报文段内容</p>
-<p><img src="http://on25dlxh3.bkt.clouddn.com/17-5-23/6677722-file_1495549028238_3fa6.png" alt=""></p>
-<p>源端口号为4307，目的端口号为80，初始序号为0，数据段长度为0。</p>
-<p>FLAG字段为0x002,SYN比特置为1，表示客户端想要与服务器建立一个TCP连接。</p>
-<p>首部长度为28个字节，因为选项字段占用了8个字节，选项字段中客户端与服务器协调MSS为1460字节。</p>
-<p><strong>第二次握手</strong>查看如下图所示的TCP报文段内容</p>
-<p><img src="http://on25dlxh3.bkt.clouddn.com/2017-05-24-63808.jpg" alt="QQ20170523-223032"></p>
-<p>window size value字段表明服务器接收窗口大小为5850字节</p>
-<p>服务器初始序号为0，ACK：1表明服务器期待接受的下一个客户端发送的TCP报文段序号为1.确认了第一次握手发送的报文。</p>
-<p><strong>第三次握手</strong>查看如下图所示的TCP报文段内容</p>
-<p><img src="http://on25dlxh3.bkt.clouddn.com/2017-05-24-063810.jpg" alt="QQ20170523-223436"></p>
-<p>最后一次握手这个报文段。序号为1，ACK为1表明客户端确认了服务器允许连接的报文段。因为连接已经建立了。所以SYN比特置为0.</p>
-<p>至此。三次握手结束。成功建立TCP连接。</p>
-<h4 id="HTTP协议分析"><a href="#HTTP协议分析" class="headerlink" title="HTTP协议分析"></a>HTTP协议分析</h4><p><img src="http://on25dlxh3.bkt.clouddn.com/2017-05-24-063807.jpg" alt="QQ20170523-223829"></p>
-<p>源IP为192.168.1.102，目的IP为128.119.245.12</p>
-<p>分析HTTP报文内容（如上图所示）</p>
-<p>GET方法字段指明了客户端要请求的资源URL，Host字段内容表明服务器主机是gaia.cs.umass.edu，User-Agent字段提供了客户主机的一些信息，浏览器默认接受的语言是en-us，HTTP版本是HTTP／1.1。保持TCP连接不断开</p>
-<p>分析服务器返回给客户端的报文（如下图所示）。<img src="http://on25dlxh3.bkt.clouddn.com/2017-05-24-063808.jpg" alt="QQ20170523-224624"></p>
-<p>服务器返回的状态码是200表明请求成功。查看数据部分内容。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Line-based text data: text/html</div><div class="line">    &lt;html&gt;\n</div><div class="line">    &lt;head&gt;\n</div><div class="line">    &lt;title&gt;Lab2-4 file: Embedded URLs&lt;/title&gt;\n</div><div class="line">    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=iso-8859-1&quot;&gt;\n</div><div class="line">    &lt;/head&gt;\n</div><div class="line">    \n</div><div class="line">    &lt;body bgcolor=&quot;#FFFFFF&quot; text=&quot;#000000&quot;&gt;\n</div><div class="line">    \n</div><div class="line">    &lt;p&gt;\n</div><div class="line">    &lt;img src=&quot;http://www.aw-bc.com/catalog/images/pearson-logo-footer.gif&quot; WIDTH=&quot;70&quot; HEIGHT=&quot;41&quot; &gt; &lt;/p&gt;\n</div><div class="line">    &lt;p&gt;This little HTML file is being served by gaia.cs.umass.edu. &lt;br&gt;\n</div><div class="line">    It contains two embedded images. The image above, from the web site of &lt;br&gt;\n</div><div class="line">    our publisher, is served by the server www.pearsoned.com.  The image of our &lt;br&gt;\n</div><div class="line">    book below is stored at the www server manic.cs.umass.edu:&lt;/p&gt;\n</div><div class="line">    &lt;p align=&quot;left&quot;&gt;&lt;img src=&quot;http://manic.cs.umass.edu/~kurose/cover.jpg&quot; width=&quot;168&quot; height=&quot;220&quot;&gt;&lt;/p&gt;\n</div><div class="line">    &lt;/body&gt;\n</div><div class="line">    &lt;/html&gt;\n</div></pre></td></tr></table></figure>
-<p>注意到该页面引用了2个图片。</p>
-<p>客户端为这2个图片并行设置TCP连接。如下图所示。端口分别为4308与4309<img src="http://on25dlxh3.bkt.clouddn.com/2017-05-24-63811.jpg" alt="QQ20170523-225311"></p>
-<h4 id="IP协议分析"><a href="#IP协议分析" class="headerlink" title="IP协议分析"></a>IP协议分析</h4><p>我们以服务器发送给客户端的第一次响应HTTP报文为例。分析其IP协议内容。报文内容如下</p>
-<p><img src="http://on25dlxh3.bkt.clouddn.com/2017-05-24-063758.jpg" alt="QQ20170523-225733"></p>
-<p>IP版本为4，头部长度20字节。总长度1043字节。标识符为29771，标志字段为0x744b表明此IP不分段。偏移值为0，存活跳数为55，上层协议报文为TCP。</p>
+            <p>##网络层</p>
+<ul>
+<li>TCP中长度字段为首部长度，UDP中长度字段为UDP首部长度（8字节）加数据长度</li>
+</ul>
+<h4 id="层次化路由选择的作用"><a href="#层次化路由选择的作用" class="headerlink" title="层次化路由选择的作用"></a>层次化路由选择的作用</h4><h4 id="输入端口，输出端口需要缓冲区的原因"><a href="#输入端口，输出端口需要缓冲区的原因" class="headerlink" title="输入端口，输出端口需要缓冲区的原因"></a>输入端口，输出端口需要缓冲区的原因</h4><h4 id="MTU与MSS"><a href="#MTU与MSS" class="headerlink" title="MTU与MSS"></a>MTU与MSS</h4><p>MTU：可以传输的最大IP报文（包含IP头部，但不包含协议栈更下层的头部），典型值为1500字节。</p>
+<p>MSS：最大报文段长度。不包含TCP头部信息。典型值为1460字节（因为MTU典型值为1500字节。去除IP头部，TCP头部（如果没有选项的话）。就是1460字节。</p>
+<h4 id="子网掩码作用"><a href="#子网掩码作用" class="headerlink" title="子网掩码作用"></a>子网掩码作用</h4><p>将局域网IP地址与上子网掩码。如果2台主机所得的结果相同。则处于同一子网之中</p>
+<h4 id="常见应用端口"><a href="#常见应用端口" class="headerlink" title="常见应用端口"></a>常见应用端口</h4>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://trqyc.me/2017/06/08/信息安全数学复习/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="TRQYC">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TRQYC">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/06/08/信息安全数学复习/" itemprop="url">Untitled</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-08T21:44:02+08:00">
+                2017-06-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <hr>
+<p>title: 信息安全数学基础期末复习概要<br>date: 2017-06-8 21:48:09<br>tags: </p>
+<pre><code>- 数学
+</code></pre><hr>
+<h4 id="部分内容"><a href="#部分内容" class="headerlink" title="部分内容"></a>部分内容</h4><p>群的定义，子群定义</p>
+<p>证明H是G的子群</p>
+<p>正规子群与商群</p>
+<p>正规子群的证明</p>
+<p>证明正规子群的全体陪集对于该子群的乘法构成群</p>
+<p>同态映射的核及相关证明</p>
+<p>循环群的定义，阶数，性质</p>
+<p>求N阶循环群的生成元，真子群，其中元素的阶</p>
+<p>求逆元</p>
+<p>求解同余方程，求解同余方程组</p>
+<p>证明整环，除环，域相关</p>
+<p>扩展欧几里得算法的应用</p>
+<p>RSA算法证明与运用</p>
+<p>拉格朗日定理证明</p>
+<p>费马小定理</p>
+<p>欧拉定理</p>
+<p>欧拉函数</p>
+<p>####重修考试题型2017.06.08</p>
+<ol>
+<li>将同余方程转换成同余方程组求解</li>
+<li>某数是否是某数的平方剩余</li>
+<li>拉格朗日定理证明</li>
+<li>证明完全剩余系ZN*对模N加法与乘法构成域</li>
+<li>韩信点兵问题</li>
+<li>整环除环域的关系</li>
+</ol>
 
           
         
@@ -1380,7 +1498,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -1402,7 +1520,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
