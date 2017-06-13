@@ -354,14 +354,27 @@
       
         
           
-            <p>##网络层</p>
+            <p>#疑难点</p>
+<p>##运输层</p>
 <ul>
 <li>TCP中长度字段为首部长度，UDP中长度字段为UDP首部长度（8字节）加数据长度</li>
 </ul>
-<h4 id="层次化路由选择的作用"><a href="#层次化路由选择的作用" class="headerlink" title="层次化路由选择的作用"></a>层次化路由选择的作用</h4><h4 id="输入端口，输出端口需要缓冲区的原因"><a href="#输入端口，输出端口需要缓冲区的原因" class="headerlink" title="输入端口，输出端口需要缓冲区的原因"></a>输入端口，输出端口需要缓冲区的原因</h4><h4 id="MTU与MSS"><a href="#MTU与MSS" class="headerlink" title="MTU与MSS"></a>MTU与MSS</h4><p>MTU：可以传输的最大IP报文（包含IP头部，但不包含协议栈更下层的头部），典型值为1500字节。</p>
+<p>TCP 报文段结构</p>
+<p><img src="http://on25dlxh3.bkt.clouddn.com/2017-06-12-135121.jpg" alt="QQ20170612-214957"></p>
+<p>UDP报文段结构</p>
+<p><img src="http://on25dlxh3.bkt.clouddn.com/2017-06-12-135122.jpg" alt="QQ20170612-215011"></p>
+<h4 id="拥塞控制FSM"><a href="#拥塞控制FSM" class="headerlink" title="拥塞控制FSM"></a>拥塞控制FSM</h4><h4 id=""><a href="#" class="headerlink" title=""></a><img src="http://on25dlxh3.bkt.clouddn.com/2017-06-12-134213.jpg" alt="QQ20170612-214122"></h4><h4 id="层次化路由选择的作用"><a href="#层次化路由选择的作用" class="headerlink" title="层次化路由选择的作用"></a>层次化路由选择的作用</h4><h4 id="输入端口，输出端口需要缓冲区的原因"><a href="#输入端口，输出端口需要缓冲区的原因" class="headerlink" title="输入端口，输出端口需要缓冲区的原因"></a>输入端口，输出端口需要缓冲区的原因</h4><h4 id="MTU与MSS"><a href="#MTU与MSS" class="headerlink" title="MTU与MSS"></a>MTU与MSS</h4><p>MTU：可以传输的最大IP报文（包含IP头部，但不包含协议栈更下层的头部），典型值为1500字节。</p>
 <p>MSS：最大报文段长度。不包含TCP头部信息。典型值为1460字节（因为MTU典型值为1500字节。去除IP头部，TCP头部（如果没有选项的话）。就是1460字节。</p>
 <h4 id="子网掩码作用"><a href="#子网掩码作用" class="headerlink" title="子网掩码作用"></a>子网掩码作用</h4><p>将局域网IP地址与上子网掩码。如果2台主机所得的结果相同。则处于同一子网之中</p>
-<h4 id="常见应用端口"><a href="#常见应用端口" class="headerlink" title="常见应用端口"></a>常见应用端口</h4>
+<h4 id="常见应用端口"><a href="#常见应用端口" class="headerlink" title="常见应用端口"></a>常见应用端口</h4><h1 id="易错题"><a href="#易错题" class="headerlink" title="易错题"></a>易错题</h1><blockquote>
+<p>主机甲与主机乙之间已建立一个TCP连接，主机甲向主机乙发送了两个连续的TCP段，分别包含300字节和500字节的有效载荷，第—个段的序列号为200，主机乙正确接收两个段后，发送给主机甲的确认序列号是    </p>
+</blockquote>
+<p>1000不是1001</p>
+<blockquote>
+<p>一个TCP连接总是以1KB的最大段长发送TCP段，发送方有足够的数据要发送。当拥塞窗口为16KB时发送了超时，如果用慢开始算法，接下来的4个RTT（往返时间）时间内的TCP段的传输是成功的，那么当第4个RTT时间内发送的所有TCP段都得到肯定应答时，拥塞窗口大小是   </p>
+</blockquote>
+<p>9KB NOT 16KB</p>
+
           
         
       
