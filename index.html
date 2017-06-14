@@ -357,7 +357,18 @@
             <h3 id="运输层"><a href="#运输层" class="headerlink" title="运输层"></a>运输层</h3><p>TCP中长度字段为首部长度，UDP中长度字段为UDP首部长度（8字节）加数据长度</p>
 <h5 id="TCP-报文段结构"><a href="#TCP-报文段结构" class="headerlink" title="TCP 报文段结构"></a>TCP 报文段结构</h5><p><img src="http://on25dlxh3.bkt.clouddn.com/2017-06-12-135121.jpg" alt="QQ20170612-214957"></p>
 <h5 id="UDP报文段结构"><a href="#UDP报文段结构" class="headerlink" title="UDP报文段结构"></a>UDP报文段结构</h5><p><img src="http://on25dlxh3.bkt.clouddn.com/2017-06-12-135122.jpg" alt="QQ20170612-215011"></p>
-<h4 id="拥塞控制FSM"><a href="#拥塞控制FSM" class="headerlink" title="拥塞控制FSM"></a>拥塞控制FSM</h4><h4 id=""><a href="#" class="headerlink" title=""></a><img src="http://on25dlxh3.bkt.clouddn.com/2017-06-12-134213.jpg" alt="QQ20170612-214122"></h4><h4 id="层次化路由选择的作用"><a href="#层次化路由选择的作用" class="headerlink" title="层次化路由选择的作用"></a>层次化路由选择的作用</h4><h4 id="输入端口，输出端口需要缓冲区的原因"><a href="#输入端口，输出端口需要缓冲区的原因" class="headerlink" title="输入端口，输出端口需要缓冲区的原因"></a>输入端口，输出端口需要缓冲区的原因</h4><h4 id="MTU与MSS"><a href="#MTU与MSS" class="headerlink" title="MTU与MSS"></a>MTU与MSS</h4><p>MTU：最大传输单元（包含IP头部，但不包含协议栈更下层的头部），对于以太网，典型值为1500字节。</p>
+<h4 id="拥塞控制FSM"><a href="#拥塞控制FSM" class="headerlink" title="拥塞控制FSM"></a>拥塞控制FSM</h4><h4 id=""><a href="#" class="headerlink" title=""></a><img src="http://on25dlxh3.bkt.clouddn.com/2017-06-12-134213.jpg" alt="QQ20170612-214122"></h4><h4 id="TCP，UDP中校验和具体计算方法"><a href="#TCP，UDP中校验和具体计算方法" class="headerlink" title="TCP，UDP中校验和具体计算方法"></a>TCP，UDP中校验和具体计算方法</h4><blockquote>
+<p>Checksum: 16 bits<br>The checksum field is the 16 bit one’s complement of the one’s complement sum of all 16 bit words in the header and text. If a segment contains an odd number of header and text octets to be checksummed, the last octet is padded on the right with zeros to form a 16 bit word for checksum purposes. The pad is not transmitted as part of the segment. While computing the checksum, the checksum field itself is replaced with zeros.</p>
+<p>The checksum also covers a 96 bit pseudo header conceptually prefixed to the TCP header. This pseudo header contains the Source Address, the Destination Address, the Protocol, and TCP length. This gives the TCP protection against misrouted segments. This information is carried in the Internet Protocol and is transferred across the TCP/Network interface in the arguments or results of calls by the TCP on the IP.</p>
+</blockquote>
+<pre><code>+--------+--------+--------+--------+
+|           Source Address          |
++--------+--------+--------+--------+
+|         Destination Address       |
++--------+--------+--------+--------+
+|  zero  |  PTCL  |    TCP Length   |
++--------+--------+--------+--------+
+</code></pre><h4 id="层次化路由选择的作用"><a href="#层次化路由选择的作用" class="headerlink" title="层次化路由选择的作用"></a>层次化路由选择的作用</h4><h4 id="输入端口，输出端口需要缓冲区的原因"><a href="#输入端口，输出端口需要缓冲区的原因" class="headerlink" title="输入端口，输出端口需要缓冲区的原因"></a>输入端口，输出端口需要缓冲区的原因</h4><h4 id="MTU与MSS"><a href="#MTU与MSS" class="headerlink" title="MTU与MSS"></a>MTU与MSS</h4><p>MTU：最大传输单元（包含IP头部，但不包含协议栈更下层的头部），对于以太网，典型值为1500字节。</p>
 <p>MSS：最大分段大小。不包含TCP头部信息。典型值为1460字节（因为MTU典型值为1500字节。去除IP头部，TCP头部（如果没有选项的话）。就是1460字节。如果TCP报文段超过了MSS，则在运输层分段。MSS由传输双方协商，由于一般MSS典型值为1460字节。所以一般情况下TCP报文段封装到下层网络层时候，很少会出现IP分片的情况。</p>
 <p>请注意：这里的MSS是针对TCP报文段而言（Maximum Segment size)，对于UDP而言，没有MSS这个概念。UDP直接将应用层报文加上UDP首部封装进IP数据报。如果超出了MTU。则在网络层进行IP分片。我们可以从维基百科中获得相关信息</p>
 <blockquote>
