@@ -96,16 +96,17 @@
 <meta name="description" content="运输层TCP中长度字段为首部长度，UDP中长度字段为UDP首部长度（8字节）加数据长度 TCP 报文段结构 UDP报文段结构 拥塞控制FSM层次化路由选择的作用输入端口，输出端口需要缓冲区的原因MTU与MSSMTU：最大传输单元（包含IP头部，但不包含协议栈更下层的头部），对于以太网，典型值为1500字节。 MSS：最大分段大小。不包含TCP头部信息。典型值为1460字节（因为MTU典型值为150">
 <meta name="keywords" content="杂,CS">
 <meta property="og:type" content="article">
-<meta property="og:title" content="计算机网络总复习">
+<meta property="og:title" content="计算机网络总复习（缓慢更新中)">
 <meta property="og:url" content="http://trqyc.me/2017/06/12/计算机网络复习/index.html">
 <meta property="og:site_name" content="TRQYC">
 <meta property="og:description" content="运输层TCP中长度字段为首部长度，UDP中长度字段为UDP首部长度（8字节）加数据长度 TCP 报文段结构 UDP报文段结构 拥塞控制FSM层次化路由选择的作用输入端口，输出端口需要缓冲区的原因MTU与MSSMTU：最大传输单元（包含IP头部，但不包含协议栈更下层的头部），对于以太网，典型值为1500字节。 MSS：最大分段大小。不包含TCP头部信息。典型值为1460字节（因为MTU典型值为150">
 <meta property="og:image" content="http://on25dlxh3.bkt.clouddn.com/2017-06-12-135121.jpg">
 <meta property="og:image" content="http://on25dlxh3.bkt.clouddn.com/2017-06-12-135122.jpg">
 <meta property="og:image" content="http://on25dlxh3.bkt.clouddn.com/2017-06-12-134213.jpg">
-<meta property="og:updated_time" content="2017-06-13T11:06:53.000Z">
+<meta property="og:image" content="http://on25dlxh3.bkt.clouddn.com/2017-06-13-121736.jpg">
+<meta property="og:updated_time" content="2017-06-14T04:45:20.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="计算机网络总复习">
+<meta name="twitter:title" content="计算机网络总复习（缓慢更新中)">
 <meta name="twitter:description" content="运输层TCP中长度字段为首部长度，UDP中长度字段为UDP首部长度（8字节）加数据长度 TCP 报文段结构 UDP报文段结构 拥塞控制FSM层次化路由选择的作用输入端口，输出端口需要缓冲区的原因MTU与MSSMTU：最大传输单元（包含IP头部，但不包含协议栈更下层的头部），对于以太网，典型值为1500字节。 MSS：最大分段大小。不包含TCP头部信息。典型值为1460字节（因为MTU典型值为150">
 <meta name="twitter:image" content="http://on25dlxh3.bkt.clouddn.com/2017-06-12-135121.jpg">
 
@@ -141,7 +142,7 @@
 
 
 
-  <title>计算机网络总复习 | TRQYC</title>
+  <title>计算机网络总复习（缓慢更新中) | TRQYC</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -307,7 +308,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">计算机网络总复习</h1>
+          <h1 class="post-title" itemprop="name headline">计算机网络总复习（缓慢更新中)</h1>
         
 
         <div class="post-meta">
@@ -368,6 +369,7 @@
 <blockquote>
 <p>A field that specifies the length in bytes of the entire datagram: header and data.<br>The minimum length is 8 bytes since that’s the length of the header.<br>The field size sets a theoretical limit of 65,535 bytes<br>(8 byte header + 65,527 bytes of data) for a UDP datagram.<br>The practical limit for the data length which is imposed by the underlying<br>IPv4 protocol is 65,507 bytes (65,535 − 8 byte UDP header − 20 byte IP header).</p>
 </blockquote>
+<h2 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h2><h5 id="IP数据报格式"><a href="#IP数据报格式" class="headerlink" title="IP数据报格式"></a>IP数据报格式</h5><p><img src="http://on25dlxh3.bkt.clouddn.com/2017-06-13-121736.jpg" alt=""></p>
 <h4 id="MTU-与IP数据报"><a href="#MTU-与IP数据报" class="headerlink" title="MTU 与IP数据报"></a>MTU 与IP数据报</h4><p>MTU最大传输单元，取决于局域网所采用的技术。对于以太网而言。MTU为1500bytes。IP数据报大于1500字节的时候需要分片。对于其他局域网技术MTU如下：</p>
 <table>
 <thead>
@@ -415,7 +417,7 @@
 <h4 id="常见应用端口"><a href="#常见应用端口" class="headerlink" title="常见应用端口"></a>常见应用端口</h4><h4 id="以太网与互联网"><a href="#以太网与互联网" class="headerlink" title="以太网与互联网"></a>以太网与互联网</h4><p><strong>以太网</strong>（英语：Ethernet）是一种<a href="https://zh.wikipedia.org/wiki/%E8%AE%A1%E7%AE%97%E6%9C%BA" target="_blank" rel="external">计算机</a><a href="https://zh.wikipedia.org/wiki/%E5%B1%80%E5%9F%9F%E7%BD%91" target="_blank" rel="external">局域网</a>技术。<a href="https://zh.wikipedia.org/wiki/IEEE" target="_blank" rel="external">IEEE</a>组织的IEEE 802.3标准制定了以太网的技术标准，它规定了包括<a href="https://zh.wikipedia.org/wiki/OSI%E6%A8%A1%E5%9E%8B" target="_blank" rel="external">物理层</a>的连线、电子信号和<a href="https://zh.wikipedia.org/wiki/OSI%E6%A8%A1%E5%9E%8B" target="_blank" rel="external">介质访问层</a><a href="https://zh.wikipedia.org/wiki/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE" target="_blank" rel="external">协议</a>的内容。以太网是目前应用最普遍的局域网技术，取代了其他局域网标准如<a href="https://zh.wikipedia.org/wiki/%E4%BB%A4%E7%89%8C%E7%8E%AF" target="_blank" rel="external">令牌环</a>、<a href="https://zh.wikipedia.org/wiki/FDDI" target="_blank" rel="external">FDDI</a>和<a href="https://zh.wikipedia.org/w/index.php?title=ARCNET&amp;action=edit&amp;redlink=1" target="_blank" rel="external">ARCNET</a>。</p>
 <p>互联网（英语：Internet）是一个网络的<strong>网络</strong>，它是由从地方到全球范围内几百万个私人的，政府的，学术界的，企业的和政府的网络所构成，通过电子，无线和光纤网络技术等等一系列广泛的技术联系在一起。</p>
 <p><strong>简单</strong>地说，以太网是为了实现局域网通信而设计的一系列协议簇，包括物理层传输媒介和CSMA/CD协议等内容，而互联网是一种计算机网络。是世界上最大的广域网</p>
-<h1 id="易错题"><a href="#易错题" class="headerlink" title="易错题"></a>易错题</h1><blockquote>
+<h1 id="易错"><a href="#易错" class="headerlink" title="易错"></a>易错</h1><blockquote>
 <p>主机甲与主机乙之间已建立一个TCP连接，主机甲向主机乙发送了两个连续的TCP段，分别包含300字节和500字节的有效载荷，第—个段的序列号为200，主机乙正确接收两个段后，发送给主机甲的确认序列号是    </p>
 </blockquote>
 <p>1000不是1001</p>
@@ -423,6 +425,11 @@
 <p>一个TCP连接总是以1KB的最大段长发送TCP段，发送方有足够的数据要发送。当拥塞窗口为16KB时发送了超时，如果用慢开始算法，接下来的4个RTT（往返时间）时间内的TCP段的传输是成功的，那么当第4个RTT时间内发送的所有TCP段都得到肯定应答时，拥塞窗口大小是   </p>
 </blockquote>
 <p>9KB NOT 16KB。这个做错了。尴尬。</p>
+<p><strong>Ref</strong></p>
+<ol>
+<li>[<a href="http://blog.csdn.net/xiexievv/article/details/45225999" target="_blank" rel="external">http://blog.csdn.net/xiexievv/article/details/45225999</a>]</li>
+<li></li>
+</ol>
 
       
     </div>
@@ -629,7 +636,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#运输层"><span class="nav-number">1.</span> <span class="nav-text">运输层</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#TCP-报文段结构"><span class="nav-number">1.0.1.</span> <span class="nav-text">TCP 报文段结构</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#UDP报文段结构"><span class="nav-number">1.0.2.</span> <span class="nav-text">UDP报文段结构</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#拥塞控制FSM"><span class="nav-number">1.1.</span> <span class="nav-text">拥塞控制FSM</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#"><span class="nav-number">1.2.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#层次化路由选择的作用"><span class="nav-number">1.3.</span> <span class="nav-text">层次化路由选择的作用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输入端口，输出端口需要缓冲区的原因"><span class="nav-number">1.4.</span> <span class="nav-text">输入端口，输出端口需要缓冲区的原因</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MTU与MSS"><span class="nav-number">1.5.</span> <span class="nav-text">MTU与MSS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MTU-与IP数据报"><span class="nav-number">1.6.</span> <span class="nav-text">MTU 与IP数据报</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#子网掩码作用"><span class="nav-number">1.7.</span> <span class="nav-text">子网掩码作用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常见应用端口"><span class="nav-number">1.8.</span> <span class="nav-text">常见应用端口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#以太网与互联网"><span class="nav-number">1.9.</span> <span class="nav-text">以太网与互联网</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#易错题"><span class="nav-number"></span> <span class="nav-text">易错题</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#运输层"><span class="nav-number">1.</span> <span class="nav-text">运输层</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#TCP-报文段结构"><span class="nav-number">1.0.1.</span> <span class="nav-text">TCP 报文段结构</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#UDP报文段结构"><span class="nav-number">1.0.2.</span> <span class="nav-text">UDP报文段结构</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#拥塞控制FSM"><span class="nav-number">1.1.</span> <span class="nav-text">拥塞控制FSM</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#"><span class="nav-number">1.2.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#层次化路由选择的作用"><span class="nav-number">1.3.</span> <span class="nav-text">层次化路由选择的作用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输入端口，输出端口需要缓冲区的原因"><span class="nav-number">1.4.</span> <span class="nav-text">输入端口，输出端口需要缓冲区的原因</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MTU与MSS"><span class="nav-number">1.5.</span> <span class="nav-text">MTU与MSS</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络层"><span class="nav-number"></span> <span class="nav-text">网络层</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#IP数据报格式"><span class="nav-number">0.0.1.</span> <span class="nav-text">IP数据报格式</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MTU-与IP数据报"><span class="nav-number">0.1.</span> <span class="nav-text">MTU 与IP数据报</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#子网掩码作用"><span class="nav-number">0.2.</span> <span class="nav-text">子网掩码作用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常见应用端口"><span class="nav-number">0.3.</span> <span class="nav-text">常见应用端口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#以太网与互联网"><span class="nav-number">0.4.</span> <span class="nav-text">以太网与互联网</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#易错"><span class="nav-number"></span> <span class="nav-text">易错</span></a></div>
             
 
           </div>

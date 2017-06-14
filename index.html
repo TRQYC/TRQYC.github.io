@@ -305,7 +305,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/06/12/计算机网络复习/" itemprop="url">计算机网络总复习</a></h1>
+                <a class="post-title-link" href="/2017/06/12/计算机网络复习/" itemprop="url">计算机网络总复习（缓慢更新中)</a></h1>
         
 
         <div class="post-meta">
@@ -363,6 +363,7 @@
 <blockquote>
 <p>A field that specifies the length in bytes of the entire datagram: header and data.<br>The minimum length is 8 bytes since that’s the length of the header.<br>The field size sets a theoretical limit of 65,535 bytes<br>(8 byte header + 65,527 bytes of data) for a UDP datagram.<br>The practical limit for the data length which is imposed by the underlying<br>IPv4 protocol is 65,507 bytes (65,535 − 8 byte UDP header − 20 byte IP header).</p>
 </blockquote>
+<h2 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h2><h5 id="IP数据报格式"><a href="#IP数据报格式" class="headerlink" title="IP数据报格式"></a>IP数据报格式</h5><p><img src="http://on25dlxh3.bkt.clouddn.com/2017-06-13-121736.jpg" alt=""></p>
 <h4 id="MTU-与IP数据报"><a href="#MTU-与IP数据报" class="headerlink" title="MTU 与IP数据报"></a>MTU 与IP数据报</h4><p>MTU最大传输单元，取决于局域网所采用的技术。对于以太网而言。MTU为1500bytes。IP数据报大于1500字节的时候需要分片。对于其他局域网技术MTU如下：</p>
 <table>
 <thead>
@@ -410,7 +411,7 @@
 <h4 id="常见应用端口"><a href="#常见应用端口" class="headerlink" title="常见应用端口"></a>常见应用端口</h4><h4 id="以太网与互联网"><a href="#以太网与互联网" class="headerlink" title="以太网与互联网"></a>以太网与互联网</h4><p><strong>以太网</strong>（英语：Ethernet）是一种<a href="https://zh.wikipedia.org/wiki/%E8%AE%A1%E7%AE%97%E6%9C%BA" target="_blank" rel="external">计算机</a><a href="https://zh.wikipedia.org/wiki/%E5%B1%80%E5%9F%9F%E7%BD%91" target="_blank" rel="external">局域网</a>技术。<a href="https://zh.wikipedia.org/wiki/IEEE" target="_blank" rel="external">IEEE</a>组织的IEEE 802.3标准制定了以太网的技术标准，它规定了包括<a href="https://zh.wikipedia.org/wiki/OSI%E6%A8%A1%E5%9E%8B" target="_blank" rel="external">物理层</a>的连线、电子信号和<a href="https://zh.wikipedia.org/wiki/OSI%E6%A8%A1%E5%9E%8B" target="_blank" rel="external">介质访问层</a><a href="https://zh.wikipedia.org/wiki/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE" target="_blank" rel="external">协议</a>的内容。以太网是目前应用最普遍的局域网技术，取代了其他局域网标准如<a href="https://zh.wikipedia.org/wiki/%E4%BB%A4%E7%89%8C%E7%8E%AF" target="_blank" rel="external">令牌环</a>、<a href="https://zh.wikipedia.org/wiki/FDDI" target="_blank" rel="external">FDDI</a>和<a href="https://zh.wikipedia.org/w/index.php?title=ARCNET&amp;action=edit&amp;redlink=1" target="_blank" rel="external">ARCNET</a>。</p>
 <p>互联网（英语：Internet）是一个网络的<strong>网络</strong>，它是由从地方到全球范围内几百万个私人的，政府的，学术界的，企业的和政府的网络所构成，通过电子，无线和光纤网络技术等等一系列广泛的技术联系在一起。</p>
 <p><strong>简单</strong>地说，以太网是为了实现局域网通信而设计的一系列协议簇，包括物理层传输媒介和CSMA/CD协议等内容，而互联网是一种计算机网络。是世界上最大的广域网</p>
-<h1 id="易错题"><a href="#易错题" class="headerlink" title="易错题"></a>易错题</h1><blockquote>
+<h1 id="易错"><a href="#易错" class="headerlink" title="易错"></a>易错</h1><blockquote>
 <p>主机甲与主机乙之间已建立一个TCP连接，主机甲向主机乙发送了两个连续的TCP段，分别包含300字节和500字节的有效载荷，第—个段的序列号为200，主机乙正确接收两个段后，发送给主机甲的确认序列号是    </p>
 </blockquote>
 <p>1000不是1001</p>
@@ -418,6 +419,11 @@
 <p>一个TCP连接总是以1KB的最大段长发送TCP段，发送方有足够的数据要发送。当拥塞窗口为16KB时发送了超时，如果用慢开始算法，接下来的4个RTT（往返时间）时间内的TCP段的传输是成功的，那么当第4个RTT时间内发送的所有TCP段都得到肯定应答时，拥塞窗口大小是   </p>
 </blockquote>
 <p>9KB NOT 16KB。这个做错了。尴尬。</p>
+<p><strong>Ref</strong></p>
+<ol>
+<li>[<a href="http://blog.csdn.net/xiexievv/article/details/45225999" target="_blank" rel="external">http://blog.csdn.net/xiexievv/article/details/45225999</a>]</li>
+<li></li>
+</ol>
 
           
         
