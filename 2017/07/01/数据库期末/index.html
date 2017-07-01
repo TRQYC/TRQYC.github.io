@@ -1,0 +1,1092 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="CS,Database," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="题型：填空20空共20分， 填空20  简答20  sql编程20  db设计20  综合应用与管理20 答疑课老师说的：数据model概念 第二章中的关系代数 第三章中的SQL 视图，过程，函数，触发器四选一 第四章ER图设计 第五章 了解1NF 2NF 3NF BCNF 4NF 概念 第六章  并发控制/灾难恢复 二选一 transaction基本概念 实验课老师说的：ACID，二阶段协议 结">
+<meta name="keywords" content="CS,Database">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库期末复习笔记">
+<meta property="og:url" content="http://trqyc.me/2017/07/01/数据库期末/index.html">
+<meta property="og:site_name" content="TRQYC">
+<meta property="og:description" content="题型：填空20空共20分， 填空20  简答20  sql编程20  db设计20  综合应用与管理20 答疑课老师说的：数据model概念 第二章中的关系代数 第三章中的SQL 视图，过程，函数，触发器四选一 第四章ER图设计 第五章 了解1NF 2NF 3NF BCNF 4NF 概念 第六章  并发控制/灾难恢复 二选一 transaction基本概念 实验课老师说的：ACID，二阶段协议 结">
+<meta property="og:updated_time" content="2017-07-01T08:00:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据库期末复习笔记">
+<meta name="twitter:description" content="题型：填空20空共20分， 填空20  简答20  sql编程20  db设计20  综合应用与管理20 答疑课老师说的：数据model概念 第二章中的关系代数 第三章中的SQL 视图，过程，函数，触发器四选一 第四章ER图设计 第五章 了解1NF 2NF 3NF BCNF 4NF 概念 第六章  并发控制/灾难恢复 二选一 transaction基本概念 实验课老师说的：ACID，二阶段协议 结">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://trqyc.me/2017/07/01/数据库期末/"/>
+
+
+
+
+
+  <title>数据库期末复习笔记 | TRQYC</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-96190392-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f6647064597704cbbe40a3a3f2bb1324";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">TRQYC</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://trqyc.me/2017/07/01/数据库期末/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="TRQYC">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TRQYC">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">数据库期末复习笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-01T15:58:07+08:00">
+                2017-07-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="题型："><a href="#题型：" class="headerlink" title="题型："></a>题型：</h4><p>填空20空共20分，</p>
+<p>填空20  简答20  sql编程20  db设计20  综合应用与管理20</p>
+<h4 id="答疑课老师说的："><a href="#答疑课老师说的：" class="headerlink" title="答疑课老师说的："></a>答疑课老师说的：</h4><p>数据model概念</p>
+<p>第二章中的关系代数</p>
+<p>第三章中的SQL</p>
+<p>视图，过程，函数，触发器四选一</p>
+<p>第四章ER图设计</p>
+<p>第五章 了解1NF 2NF 3NF BCNF 4NF 概念</p>
+<p>第六章 </p>
+<p>并发控制/灾难恢复 二选一</p>
+<p>transaction基本概念</p>
+<h4 id="实验课老师说的："><a href="#实验课老师说的：" class="headerlink" title="实验课老师说的："></a>实验课老师说的：</h4><p>ACID，二阶段协议</p>
+<h4 id="结合上述2个版本，很有可能，"><a href="#结合上述2个版本，很有可能，" class="headerlink" title="结合上述2个版本，很有可能，"></a>结合上述2个版本，很有可能，</h4><p>transaction中会考解释ACID（每个特性具体意思要考）（邮件核实，必考）</p>
+<p>原子性</p>
+<p>一致性</p>
+<p>隔离性</p>
+<p>持久性</p>
+<p>并发控制考二阶段协议</p>
+<h3 id="基本概念（chapter1，chapter2-内容）"><a href="#基本概念（chapter1，chapter2-内容）" class="headerlink" title="基本概念（chapter1，chapter2 内容）"></a>基本概念（chapter1，chapter2 内容）</h3><h5 id="DB"><a href="#DB" class="headerlink" title="DB"></a>DB</h5><p>一个互相关联的数据的集合</p>
+<h5 id="DBMS-Schema-definition"><a href="#DBMS-Schema-definition" class="headerlink" title="DBMS Schema definition"></a>DBMS Schema definition</h5><p>相互关联的数据的集合以及一组用于访问这些数据的程序</p>
+<h5 id="DBS"><a href="#DBS" class="headerlink" title="DBS"></a>DBS</h5><p>DB+DBMS+users/administrators</p>
+<h5 id="Database-application-system"><a href="#Database-application-system" class="headerlink" title="Database application system"></a>Database application system</h5><p>DBS+application programs</p>
+<h5 id="文件系统存储数据的缺陷（填空）"><a href="#文件系统存储数据的缺陷（填空）" class="headerlink" title="文件系统存储数据的缺陷（填空）"></a>文件系统存储数据的缺陷（填空）</h5><p>数据冗余，不一致</p>
+<p>访问数据困难</p>
+<p>数据孤立，多种文件格式</p>
+<p>完整性问题，</p>
+<p>原子性问题</p>
+<p>并发访问异常</p>
+<h5 id="数据抽象（填空3）"><a href="#数据抽象（填空3）" class="headerlink" title="数据抽象（填空3）"></a>数据抽象（填空3）</h5><p>物理层，逻辑层，视图层</p>
+<h5 id="函数依赖"><a href="#函数依赖" class="headerlink" title="函数依赖"></a>函数依赖</h5><p>定义</p>
+<p>平凡函数依赖</p>
+<p>传递函数依赖</p>
+<p>1NF：一个关系是1NF当且仅当，每一个元祖在每个属性上只包含一个值</p>
+<p>2NF：is in 1NF and every non-key attribute is full functional dependency on th  primary key</p>
+<p>3NF:it is in 2NF and there is no transitive functional dependency .</p>
+<p>BCNF:whenever x-&gt;A is a nontrivial FD X is a superkey</p>
+<p>Anomalies异常</p>
+<h5 id="instances-and-schemes"><a href="#instances-and-schemes" class="headerlink" title="instances and schemes"></a>instances and schemes</h5><p>应用程序如果不依赖物理模式，则被称为具有<strong>物理数据独立性</strong></p>
+<h5 id="data-model（填空6）"><a href="#data-model（填空6）" class="headerlink" title="data model（填空6）"></a>data model（填空6）</h5><p>定义：描述<strong>数据</strong>，<strong>数据联系</strong>，<strong>数据语义</strong>以及<strong>数据约束</strong>的概念工具的集合</p>
+<p>数据模型提供了一种描述<strong>物理层</strong>，<strong>逻辑层</strong> ，<strong>以及视图层</strong>数据库设计的方式。</p>
+<p>关系数据模型</p>
+<p>用表的集合来表示数据和数据间的联系</p>
+<p>实体-联系模型</p>
+<p>基于对象的数据模型</p>
+<p>半结构化数据模型</p>
+<p>网状数据模型</p>
+<p>层次数据模型</p>
+<h5 id="DDL：定义数据库模式的语言"><a href="#DDL：定义数据库模式的语言" class="headerlink" title="DDL：定义数据库模式的语言"></a>DDL：定义数据库模式的语言</h5><p>除了定义数据库模式，还可以定义，domain constraint，referential constraint,assertion,authorization,assertions,</p>
+<h5 id="DML：数据操纵语言，表达数据库的查询与更新（也叫query-language）"><a href="#DML：数据操纵语言，表达数据库的查询与更新（也叫query-language）" class="headerlink" title="DML：数据操纵语言，表达数据库的查询与更新（也叫query language）"></a>DML：数据操纵语言，表达数据库的查询与更新（也叫query language）</h5><h5 id="2种语言"><a href="#2种语言" class="headerlink" title="2种语言"></a>2种语言</h5><p>过程语言与declarative language</p>
+<h5 id="应用程序访问数据库通过"><a href="#应用程序访问数据库通过" class="headerlink" title="应用程序访问数据库通过"></a>应用程序访问数据库通过</h5><p>嵌入SQL</p>
+<p>应用程序接口</p>
+<h5 id="数据库设计的process"><a href="#数据库设计的process" class="headerlink" title="数据库设计的process"></a>数据库设计的process</h5><p>逻辑设计阶段：决定数据库模式</p>
+<p>物理设计阶段：决定数据库物理特性，包括文件组织形式与存储结构</p>
+<h5 id="DBMS-DMS的major-components"><a href="#DBMS-DMS的major-components" class="headerlink" title="DBMS /DMS的major components"></a>DBMS /DMS的major components</h5><p>查询处理器</p>
+<p>存储管理器</p>
+<p>元数据metadata(课本没有，PPT有)</p>
+<h5 id="存储管理器包括"><a href="#存储管理器包括" class="headerlink" title="存储管理器包括"></a>存储管理器包括</h5><p>权限以及完整性管理器</p>
+<p>事务管理器</p>
+<p>文件管理器</p>
+<p>缓冲区管理器</p>
+<h5 id="查询处理器包含"><a href="#查询处理器包含" class="headerlink" title="查询处理器包含"></a>查询处理器包含</h5><p>DDL解释器</p>
+<p>DDL编译器</p>
+<p>查询执行引擎</p>
+<h5 id="DBMS的体系结构"><a href="#DBMS的体系结构" class="headerlink" title="DBMS的体系结构"></a>DBMS的体系结构</h5><p>二层体系结构</p>
+<p>与三层体系结构</p>
+<h5 id="DBA的功能"><a href="#DBA的功能" class="headerlink" title="DBA的功能"></a>DBA的功能</h5><p>模式定义</p>
+<p>存储结构以及存取方法定义</p>
+<p>模式以及物理组织的修改</p>
+<p>数据访问授权</p>
+<p>日常维护</p>
+<h5 id="数据库模式"><a href="#数据库模式" class="headerlink" title="数据库模式"></a>数据库模式</h5><p>数据库的逻辑设计</p>
+<h5 id="数据库实例"><a href="#数据库实例" class="headerlink" title="数据库实例"></a>数据库实例</h5><p>给定时刻数据库中数据的一个快照</p>
+<h5 id="关系数据库的结构"><a href="#关系数据库的结构" class="headerlink" title="关系数据库的结构"></a>关系数据库的结构</h5><p>一组名字唯一的表、</p>
+<p>二维表叫做关系</p>
+<h5 id="关系模式"><a href="#关系模式" class="headerlink" title="关系模式"></a>关系模式</h5><p>关系的名字以及关系的属性的集合</p>
+<h5 id="元祖"><a href="#元祖" class="headerlink" title="元祖"></a>元祖</h5><p>关系的一行，除了关系最顶部的属性行</p>
+<h5 id="关系INSTANCE"><a href="#关系INSTANCE" class="headerlink" title="关系INSTANCE"></a>关系INSTANCE</h5><p>给定关系的一些元祖的集合</p>
+<p>数据库：一些关系的集合</p>
+<p>数据库模式：关系模式的集合</p>
+<h3 id="关系代数"><a href="#关系代数" class="headerlink" title="关系代数"></a>关系代数</h3><p>选择</p>
+<p>投影</p>
+<p>自然连接</p>
+<p>笛卡尔积</p>
+<blockquote>
+<p> 自然连接与笛卡尔积都将2个关系中在相同属性具有相同取值的元祖。区别在于，笛卡尔积输出所有元祖（where采用笛卡尔积，所以select中要指出选择的是哪一个表的属性），而自然连接则将2个关系都有的相同属性那一列合并成一列，只输出一列。</p>
+</blockquote>
+<p>并</p>
+<h3 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h3><p>The basic component of SQL</p>
+<ul>
+<li>Data-definition language: DDL (create, drop, alter)，</li>
+<li>Data-manipulation language DML (select, insert, update, delete)</li>
+<li>Data control language : DCL (grant, revoke)</li>
+</ul>
+<h4 id="数据库定义语言"><a href="#数据库定义语言" class="headerlink" title="数据库定义语言"></a>数据库定义语言</h4><h5 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h5><p>create table XX（</p>
+<p>​    XXX char(20) NOT NULL,</p>
+<p>​    XXX char(20),</p>
+<p>​    primary key(XXX,XXX),</p>
+<p>​    foreign key(XXX）references XX表</p>
+<p>)；</p>
+<blockquote>
+<p>外码约束中的属性名必须是被参考关系的主码属性</p>
+</blockquote>
+<h5 id="删除表"><a href="#删除表" class="headerlink" title="删除表"></a>删除表</h5><p>drop table r;</p>
+<h5 id="增加属性"><a href="#增加属性" class="headerlink" title="增加属性"></a>增加属性</h5><p>alter table r add A,D</p>
+<blockquote>
+<p>A为属性，D为域</p>
+</blockquote>
+<h4 id="数据库的修改"><a href="#数据库的修改" class="headerlink" title="数据库的修改"></a>数据库的修改</h4><h5 id="删除元祖"><a href="#删除元祖" class="headerlink" title="删除元祖"></a>删除元祖</h5><p>delete form r where XXX;</p>
+<h5 id="插入元祖"><a href="#插入元祖" class="headerlink" title="插入元祖"></a>插入元祖</h5><p>insert into XX </p>
+<p>values（XX）；</p>
+<p>或者insert into XX（XX属性，XX属性，XX属性）</p>
+<p>values（XX，XX）；</p>
+<p>或者 insert into XX</p>
+<p>​    selectXXX</p>
+<p>​    from XX</p>
+<p>​    where XX</p>
+<h5 id="更新元祖"><a href="#更新元祖" class="headerlink" title="更新元祖"></a>更新元祖</h5><p>update  XX </p>
+<p>set XX =XX </p>
+<p>where XX;</p>
+<p>from子句产生了笛卡尔积</p>
+<blockquote>
+<p>注意笛卡尔积与自然连接的不同</p>
+</blockquote>
+<p>select distinct </p>
+<p>select all </p>
+<p>元祖的排序</p>
+<p>order   by XX ,XX desc ,XX ,XX desc(默认为ASC，需要用desc降序则需要明确写出来,)</p>
+<h4 id="WITH子句"><a href="#WITH子句" class="headerlink" title="WITH子句"></a>WITH子句</h4><p>with max_budet(value) as </p>
+<p>​    (select max(budget) from department)</p>
+<p>select budget</p>
+<p>from department, max_budget</p>
+<p>where department.budet=max_budget.value</p>
+<h4 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h4><p>create view XX AS SQL语句</p>
+<p>可更新的（可以在视图上进行插入，更新删除）视图的定义：</p>
+<ul>
+<li>FROM只有一个关系</li>
+<li>select只包含关系的属性名字，不包含任何表达式，聚集或者distinct声明</li>
+<li>任何没有出现在select中的属性可以取空值（即没有not NULL约束）。也不构成主码的一部分</li>
+<li>查询中没有group by或者having子句</li>
+</ul>
+<h4 id="索引index"><a href="#索引index" class="headerlink" title="索引index"></a>索引index</h4><p>create index XX属性名字 ON XX表</p>
+<p>作用：加快对创建了索引的属性的访问</p>
+<h4 id="权限"><a href="#权限" class="headerlink" title="权限"></a>权限</h4><p>select，insert，update，delete，all privileges</p>
+<p>grant &lt;权限&gt; on&lt;表&gt; to &lt;用户/角色&gt;</p>
+<p>​    grant update（XX属性）on XX表 to XX </p>
+<p>​    grant select on XX表 to XX</p>
+<p>​    public用户代表系统当前所有用户以及将来用户</p>
+<h5 id="with-grant-option"><a href="#with-grant-option" class="headerlink" title="with grant option"></a>with grant option</h5><p>如果授权是这样 grant select on XX to XX with grant option</p>
+<p> 则XX角色/用户不但拥有权限，还拥有将这个权限授予给他人的权限。</p>
+<h5 id="收回"><a href="#收回" class="headerlink" title="收回"></a>收回</h5><p>revoke &lt;权限列表&gt; on&lt;表&gt; from XX</p>
+<p>默认是级联收回。末尾添加关键字strict防止级联收回。</p>
+<p>收回授予权限的权限。而不是收回权限本身的语句：</p>
+<p>revoke grant option for select on XX form XX;</p>
+<h5 id="角色"><a href="#角色" class="headerlink" title="角色"></a>角色</h5><p>create role XX</p>
+<p>然后就可以对角色授权了</p>
+<p>角色可以授予给用户或者其他角色</p>
+<p>角色链。</p>
+<h4 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h4><p>返回单个值的函数：</p>
+<p>create function XX名字（传入参数名字，参数类型比如varchar(20))</p>
+<p>  returns integer //定义返回值类型</p>
+<p>  begin</p>
+<p>  declare XXX integer；//声明本地变量</p>
+<p>​    select X into XXX //SQL</p>
+<p>​    from</p>
+<p>​    where</p>
+<p> return XXX;</p>
+<p>end</p>
+<blockquote>
+<p>begin end为组合复合语句用。比如上述有2个语句。所以用begin end</p>
+</blockquote>
+<p>返回表的函数：</p>
+<p>create function XX(canshu name,varchar(20))</p>
+<p>​    returns table(XX)  //XX部分为属性名，属性类型的列表</p>
+<p>return table</p>
+<p>（SQL语句）；</p>
+<h4 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h4><p>create procedure XX(in 参数名字 参数类型，OUT 参数名，参数类型)</p>
+<p>begin</p>
+<p>SQL语句</p>
+<p>end</p>
+<h4 id="触发器"><a href="#触发器" class="headerlink" title="触发器"></a>触发器</h4><p>for  each row行级迭代</p>
+<p>还有语句级触发器。是 for each statement(不考)</p>
+<p>过渡变量</p>
+<p> 目测老师不会考难的触发器，过程函数。所以看下课本中的那个例子就应该OK了。大概就是换汤不换药</p>
+<blockquote>
+<p> 结合课本中例子以及复习PPT，重点看复习PPT126页，课本并没有详细讲细节。就OK了，很EASY的。不能放弃。</p>
+</blockquote>
+<p>drop trigger XX删除触发器</p>
+<p>alter trigger XX disable  使某触发器失效</p>
+<h4 id="附加的基本运算"><a href="#附加的基本运算" class="headerlink" title="附加的基本运算"></a>附加的基本运算</h4><h5 id="重命名运算"><a href="#重命名运算" class="headerlink" title="重命名运算"></a>重命名运算</h5><p>select XX as XX(改变属性名字)</p>
+<p>from XX a(将表XX改名字为a)</p>
+<h5 id="字符串运算"><a href="#字符串运算" class="headerlink" title="字符串运算"></a>字符串运算</h5><p>like模式匹配 </p>
+<p>%匹配任意子串，_匹配任意一个字符（P41）</p>
+<h5 id="集合运算"><a href="#集合运算" class="headerlink" title="集合运算"></a>集合运算</h5><p>并UNION（自动去除重复元祖，如果想保留需要用union all）</p>
+<p>交 intersect（自动去除重复元祖，如果想保留需要用intersect all)</p>
+<p>差 except（自动巴拉巴拉，遇上面一样）</p>
+<h4 id="NULL的处理"><a href="#NULL的处理" class="headerlink" title="NULL的处理"></a>NULL的处理</h4><p>NULL出现在算术表达式，则结果为NULL</p>
+<p>NULL出现在比较运算(&lt;,&gt;,=)，结果为unknown</p>
+<blockquote>
+<p>注意。当比较2个元祖是否为相同元祖的时候（例如select distinct就需要用到这个），如果这2个元祖所有属性对应值都相同。即使这2个元祖在某些属性上都是NULL。也认为是相同元祖。这里要与上述NULL=NULL的比较运算是unknown区分开！</p>
+</blockquote>
+<h5 id="布尔运算中"><a href="#布尔运算中" class="headerlink" title="布尔运算中"></a>布尔运算中</h5><p>​    将TRUE看作1，unknown看作0.5 FALSE看作0.</p>
+<p>​    XX AND XX取其中最小值。比如 FALSE AND unknown ，就是1与0.5取最小，是0.5 结果为UNKOWN。</p>
+<p>​    XX OR XX取最大值</p>
+<p>​    NOT XX 就是用1-XX代表的值</p>
+<h5 id="where字句中。如果计算结果为FALSE或者unknown-都不会加入到结果元祖中。"><a href="#where字句中。如果计算结果为FALSE或者unknown-都不会加入到结果元祖中。" class="headerlink" title="where字句中。如果计算结果为FALSE或者unknown 都不会加入到结果元祖中。"></a>where字句中。如果计算结果为FALSE或者unknown 都不会加入到结果元祖中。</h5><h5 id="IS-NULL"><a href="#IS-NULL" class="headerlink" title="IS NULL"></a>IS NULL</h5><p>测试是否为空值</p>
+<p>比如 where XX is null</p>
+<h4 id="聚集函数"><a href="#聚集函数" class="headerlink" title="聚集函数"></a>聚集函数</h4><p>avg,min,max,sum,count</p>
+<p>聚集函数保留重复元祖。意思就是默认带上ALL。所以如果想去掉需要加上distinct 。</p>
+<p>但是count（distinct *)是不合法。只有这一种情况不合法。其他count（distinct XX属性名）合法</p>
+<h5 id="分组聚集"><a href="#分组聚集" class="headerlink" title="分组聚集"></a>分组聚集</h5><p>一旦出现group by那么select中出现的属性，要不是被聚集的属性，要不就是group by中出现的属性.</p>
+<p>聚集函数是按照group by中的分组聚集的。（如果没有这个当然就是对整个表聚集了）</p>
+<h5 id="having-与group-by连用。"><a href="#having-与group-by连用。" class="headerlink" title="having 与group by连用。"></a>having 与group by连用。</h5><p>先where，再分组。再在分组结果用having。</p>
+<p>与之前的一样。出现在having中的属性名字要不是被聚集的属性，要不就是group by中的属性。</p>
+<blockquote>
+<p>如果不理解看课本P48详细解释（中文课本）</p>
+</blockquote>
+<p>default 默认值。</p>
+<p>例如：XX char(10) default ‘haha’,</p>
+<h4 id="完整性约束有：（掌握怎么在create语句中写）"><a href="#完整性约束有：（掌握怎么在create语句中写）" class="headerlink" title="完整性约束有：（掌握怎么在create语句中写）"></a>完整性约束有：（掌握怎么在create语句中写）</h4><p>NOT NULL</p>
+<p>主键</p>
+<p>外键：foreign key (XX）references XX表</p>
+<p>check约束</p>
+<p>unique</p>
+<p>例： check（XX属性名字 in (‘A’,’B’,”C”))确保XX属性的值只能取这几个值</p>
+<h2 id="Transaction"><a href="#Transaction" class="headerlink" title="Transaction"></a>Transaction</h2><p>定义：访问并可能更新各种数据项的一个程序执行单元</p>
+<h5 id="调度：指令在系统中执行的时间顺序"><a href="#调度：指令在系统中执行的时间顺序" class="headerlink" title="调度：指令在系统中执行的时间顺序"></a>调度：指令在系统中执行的时间顺序</h5><h5 id="可串行化"><a href="#可串行化" class="headerlink" title="可串行化"></a>可串行化</h5><p>判断调度是否是可串行化，优先图</p>
+<p>冲突可串行化，视图可串行化</p>
+<p>串行化顺序，拓扑排序</p>
+<h5 id="隔离性级别"><a href="#隔离性级别" class="headerlink" title="隔离性级别"></a>隔离性级别</h5><p>作业部分都要看</p>
+<h3 id="数据库设计与ER-MODEL"><a href="#数据库设计与ER-MODEL" class="headerlink" title="数据库设计与ER MODEL"></a>数据库设计与ER MODEL</h3><p>A super key of an entity set is a set of one or more attributes whose values uniquely determine each entity. </p>
+<p>A candidate key of an entity set is a minimal super key.</p>
+<p>Although several candidate keys may exist, one of the candidate keys is selected to be the primary key.</p>
+<h5 id="从ER图到关系模式"><a href="#从ER图到关系模式" class="headerlink" title="从ER图到关系模式"></a>从ER图到关系模式</h5><p>强实体集</p>
+<p>弱实体集：弱实体集的属性加依赖的强实体集的主键。约束有主键约束（标识符+强实体集的主键，外键约束）</p>
+<p>​    完整性约束：级联删除？WAITTING</p>
+<h5 id="联系集"><a href="#联系集" class="headerlink" title="联系集"></a>联系集</h5><p><strong>概述</strong></p>
+<p>模式：参与联系的实体集的主码+联系集的属性</p>
+<p>主码：根据映射基数不同而不同</p>
+<p>​    多对对：ALL</p>
+<p>​    多对一或者一对多：多的那一方的主码</p>
+<p>​    一对一，随便</p>
+<p>外码约束</p>
+<p><strong>模式的冗余</strong></p>
+<p>连接弱实体集与相应的强实体集的联系集比较特殊。一般为冗余模式，不需要转换</p>
+<p><strong>模式的合并</strong></p>
+<p>多对一联系转换的模式可以与多的那一方转换的模式合并，这样只剩下了多一方的模式。而没有了联系的模式</p>
+<p>一对一联系，联系集可以与参与联系的任何一方的模式进行合并</p>
+<blockquote>
+<p>以上意味着ER图中联系转换为关系模式时，只有多对多联系转换得到的关系模式得到了保留</p>
+</blockquote>
+<p>以上假设参与是全部的，即使参与是部分的，我们可以用NULL来进行模式的合并</p>
+<h5 id="设计问题"><a href="#设计问题" class="headerlink" title="设计问题"></a>设计问题</h5><h6 id="用实体集还是用属性？"><a href="#用实体集还是用属性？" class="headerlink" title="用实体集还是用属性？"></a>用实体集还是用属性？</h6><p>不能将一个实体集的主码用作另一个实体集的属性，而应当用一个联系。因为用作属性会隐藏这2个实体集的这种关系。</p>
+<h5 id="用实体集还是用联系集？"><a href="#用实体集还是用联系集？" class="headerlink" title="用实体集还是用联系集？"></a>用实体集还是用联系集？</h5><p>原则：描述2个实体间的行为用联系集</p>
+<h5 id="多元联系集到二元联系集的转换"><a href="#多元联系集到二元联系集的转换" class="headerlink" title="多元联系集到二元联系集的转换"></a>多元联系集到二元联系集的转换</h5><h4 id="扩展的ER特性（待看）"><a href="#扩展的ER特性（待看）" class="headerlink" title="扩展的ER特性（待看）"></a>扩展的ER特性（待看）</h4><h3 id="并发控制"><a href="#并发控制" class="headerlink" title="并发控制"></a>并发控制</h3><ol>
+<li><p>two-phase locking protocol(按照locking point串行化,并不保证避免死锁）</p>
+<p>,strict two-phase locking protoco,rigorous two-phase locking protocol （按照提交顺序串行化）,their difference</p>
+</li>
+<li><p>树形协议保证冲突可串行性，不会产生死锁，不需要回滚，可以在较早的时候释放锁，减少等待时间，增加并发性不保证可恢复性与无极连回滚</p>
+<p>缺点：可能必须给不访问的数据项加锁，导致封锁开销增大，可能造成额外的等待时间，会大大降低并发性，</p>
+</li>
+<li><p>多粒度封锁协议，增强了并发性，减少了锁开销。可能存在死锁，自顶向下加锁，自下而上释放锁</p>
+<p>适用于：只访问几个数据项的短事务，由整个文件或者一组文件夹生成报表的长事务</p>
+</li>
+<li><p>基于时间戳的协议，保证冲突可串行化，保证无死锁，可能导致长事务饿死的情况，可能产生不可恢复的调度</p>
+</li>
+<li><p>有效性检查协议，自动预防级联回滚，存在长事务饿死可能，乐观的并发控制</p>
+</li>
+<li><p>多版本二阶段封锁，更新事务执行强二阶段协议，只读事务</p>
+<p>​</p>
+</li>
+</ol>
+<h3 id="恢复系统"><a href="#恢复系统" class="headerlink" title="恢复系统"></a>恢复系统</h3><p>recovery scheme 作用</p>
+<p>必须提供high availability</p>
+<p>分类：</p>
+<p>事物故障</p>
+<p>​    逻辑错误</p>
+<p>​    系统错误</p>
+<p>系统崩溃</p>
+<p>​    fail-stop assumption</p>
+<p>磁盘故障</p>
+<p>恢复算法（掌握恢复的流程）</p>
+<p>redo , undo, undo-list, 重做阶段，撤销阶段</p>
+<blockquote>
+<p>  这里对照复习PPT看课本。不用全看，看16.1，16.3.1，16.3.2，16.3.4.16.3.5，16.3.6，16.4.1，16.4.2，16.9要知道我这里列出的几个名字的意思）</p>
+</blockquote>
+<p>检查点</p>
+<p>日志的概念</p>
+<p>远程备份系统</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CS/" rel="tag"># CS</a>
+          
+            <a href="/tags/Database/" rel="tag"># Database</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/12/计算机网络复习/" rel="next" title="计算机网络总复习（缓慢更新中)">
+                <i class="fa fa-chevron-left"></i> 计算机网络总复习（缓慢更新中)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="TRQYC" />
+          <p class="site-author-name" itemprop="name">TRQYC</p>
+           
+              <p class="site-description motion-element" itemprop="description">haha</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="htstp://music.163.com/#/my/m/music/playlist?id=153416010" target="_blank" title="网易云音乐">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  网易云音乐
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://freecoder.me/" title="Freecoder" target="_blank">Freecoder</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#题型："><span class="nav-number">1.</span> <span class="nav-text">题型：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#答疑课老师说的："><span class="nav-number">2.</span> <span class="nav-text">答疑课老师说的：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实验课老师说的："><span class="nav-number">3.</span> <span class="nav-text">实验课老师说的：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#结合上述2个版本，很有可能，"><span class="nav-number">4.</span> <span class="nav-text">结合上述2个版本，很有可能，</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本概念（chapter1，chapter2-内容）"><span class="nav-number"></span> <span class="nav-text">基本概念（chapter1，chapter2 内容）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#DB"><span class="nav-number">0.1.</span> <span class="nav-text">DB</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#DBMS-Schema-definition"><span class="nav-number">0.2.</span> <span class="nav-text">DBMS Schema definition</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#DBS"><span class="nav-number">0.3.</span> <span class="nav-text">DBS</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Database-application-system"><span class="nav-number">0.4.</span> <span class="nav-text">Database application system</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#文件系统存储数据的缺陷（填空）"><span class="nav-number">0.5.</span> <span class="nav-text">文件系统存储数据的缺陷（填空）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#数据抽象（填空3）"><span class="nav-number">0.6.</span> <span class="nav-text">数据抽象（填空3）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#函数依赖"><span class="nav-number">0.7.</span> <span class="nav-text">函数依赖</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#instances-and-schemes"><span class="nav-number">0.8.</span> <span class="nav-text">instances and schemes</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#data-model（填空6）"><span class="nav-number">0.9.</span> <span class="nav-text">data model（填空6）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#DDL：定义数据库模式的语言"><span class="nav-number">0.10.</span> <span class="nav-text">DDL：定义数据库模式的语言</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#DML：数据操纵语言，表达数据库的查询与更新（也叫query-language）"><span class="nav-number">0.11.</span> <span class="nav-text">DML：数据操纵语言，表达数据库的查询与更新（也叫query language）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2种语言"><span class="nav-number">0.12.</span> <span class="nav-text">2种语言</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#应用程序访问数据库通过"><span class="nav-number">0.13.</span> <span class="nav-text">应用程序访问数据库通过</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#数据库设计的process"><span class="nav-number">0.14.</span> <span class="nav-text">数据库设计的process</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#DBMS-DMS的major-components"><span class="nav-number">0.15.</span> <span class="nav-text">DBMS /DMS的major components</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#存储管理器包括"><span class="nav-number">0.16.</span> <span class="nav-text">存储管理器包括</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#查询处理器包含"><span class="nav-number">0.17.</span> <span class="nav-text">查询处理器包含</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#DBMS的体系结构"><span class="nav-number">0.18.</span> <span class="nav-text">DBMS的体系结构</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#DBA的功能"><span class="nav-number">0.19.</span> <span class="nav-text">DBA的功能</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#数据库模式"><span class="nav-number">0.20.</span> <span class="nav-text">数据库模式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#数据库实例"><span class="nav-number">0.21.</span> <span class="nav-text">数据库实例</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#关系数据库的结构"><span class="nav-number">0.22.</span> <span class="nav-text">关系数据库的结构</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#关系模式"><span class="nav-number">0.23.</span> <span class="nav-text">关系模式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#元祖"><span class="nav-number">0.24.</span> <span class="nav-text">元祖</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#关系INSTANCE"><span class="nav-number">0.25.</span> <span class="nav-text">关系INSTANCE</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关系代数"><span class="nav-number"></span> <span class="nav-text">关系代数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL"><span class="nav-number"></span> <span class="nav-text">SQL</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据库定义语言"><span class="nav-number">1.</span> <span class="nav-text">数据库定义语言</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#创建表"><span class="nav-number">1.1.</span> <span class="nav-text">创建表</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#删除表"><span class="nav-number">1.2.</span> <span class="nav-text">删除表</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#增加属性"><span class="nav-number">1.3.</span> <span class="nav-text">增加属性</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据库的修改"><span class="nav-number">2.</span> <span class="nav-text">数据库的修改</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#删除元祖"><span class="nav-number">2.1.</span> <span class="nav-text">删除元祖</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#插入元祖"><span class="nav-number">2.2.</span> <span class="nav-text">插入元祖</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#更新元祖"><span class="nav-number">2.3.</span> <span class="nav-text">更新元祖</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#WITH子句"><span class="nav-number">3.</span> <span class="nav-text">WITH子句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#视图"><span class="nav-number">4.</span> <span class="nav-text">视图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#索引index"><span class="nav-number">5.</span> <span class="nav-text">索引index</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#权限"><span class="nav-number">6.</span> <span class="nav-text">权限</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#with-grant-option"><span class="nav-number">6.1.</span> <span class="nav-text">with grant option</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#收回"><span class="nav-number">6.2.</span> <span class="nav-text">收回</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#角色"><span class="nav-number">6.3.</span> <span class="nav-text">角色</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数"><span class="nav-number">7.</span> <span class="nav-text">函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#过程"><span class="nav-number">8.</span> <span class="nav-text">过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#触发器"><span class="nav-number">9.</span> <span class="nav-text">触发器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#附加的基本运算"><span class="nav-number">10.</span> <span class="nav-text">附加的基本运算</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#重命名运算"><span class="nav-number">10.1.</span> <span class="nav-text">重命名运算</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#字符串运算"><span class="nav-number">10.2.</span> <span class="nav-text">字符串运算</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#集合运算"><span class="nav-number">10.3.</span> <span class="nav-text">集合运算</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NULL的处理"><span class="nav-number">11.</span> <span class="nav-text">NULL的处理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#布尔运算中"><span class="nav-number">11.1.</span> <span class="nav-text">布尔运算中</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#where字句中。如果计算结果为FALSE或者unknown-都不会加入到结果元祖中。"><span class="nav-number">11.2.</span> <span class="nav-text">where字句中。如果计算结果为FALSE或者unknown 都不会加入到结果元祖中。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#IS-NULL"><span class="nav-number">11.3.</span> <span class="nav-text">IS NULL</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#聚集函数"><span class="nav-number">12.</span> <span class="nav-text">聚集函数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#分组聚集"><span class="nav-number">12.1.</span> <span class="nav-text">分组聚集</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#having-与group-by连用。"><span class="nav-number">12.2.</span> <span class="nav-text">having 与group by连用。</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#完整性约束有：（掌握怎么在create语句中写）"><span class="nav-number">13.</span> <span class="nav-text">完整性约束有：（掌握怎么在create语句中写）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Transaction"><span class="nav-number"></span> <span class="nav-text">Transaction</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#调度：指令在系统中执行的时间顺序"><span class="nav-number">0.1.</span> <span class="nav-text">调度：指令在系统中执行的时间顺序</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#可串行化"><span class="nav-number">0.2.</span> <span class="nav-text">可串行化</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#隔离性级别"><span class="nav-number">0.3.</span> <span class="nav-text">隔离性级别</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库设计与ER-MODEL"><span class="nav-number"></span> <span class="nav-text">数据库设计与ER MODEL</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#从ER图到关系模式"><span class="nav-number">0.1.</span> <span class="nav-text">从ER图到关系模式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#联系集"><span class="nav-number">0.2.</span> <span class="nav-text">联系集</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#设计问题"><span class="nav-number">0.3.</span> <span class="nav-text">设计问题</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#用实体集还是用属性？"><span class="nav-number">0.3.1.</span> <span class="nav-text">用实体集还是用属性？</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#用实体集还是用联系集？"><span class="nav-number">0.4.</span> <span class="nav-text">用实体集还是用联系集？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#多元联系集到二元联系集的转换"><span class="nav-number">0.5.</span> <span class="nav-text">多元联系集到二元联系集的转换</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#扩展的ER特性（待看）"><span class="nav-number">1.</span> <span class="nav-text">扩展的ER特性（待看）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#并发控制"><span class="nav-number"></span> <span class="nav-text">并发控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#恢复系统"><span class="nav-number"></span> <span class="nav-text">恢复系统</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">TRQYC</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
