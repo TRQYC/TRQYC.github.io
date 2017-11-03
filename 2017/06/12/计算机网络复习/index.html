@@ -105,7 +105,7 @@
 <meta property="og:image" content="http://on25dlxh3.bkt.clouddn.com/2017-06-12-135122.jpg">
 <meta property="og:image" content="http://on25dlxh3.bkt.clouddn.com/2017-06-12-134213.jpg">
 <meta property="og:image" content="http://on25dlxh3.bkt.clouddn.com/2017-06-13-121736.jpg">
-<meta property="og:updated_time" content="2017-06-21T10:13:08.000Z">
+<meta property="og:updated_time" content="2017-11-03T08:27:04.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算机网络总复习（缓慢更新中)">
 <meta name="twitter:description" content="运输层TCP中长度字段为首部长度，UDP中长度字段为UDP首部长度（8字节）加数据长度 三次握手 TCP 报文段结构 UDP报文段结构 拥塞控制FSMTCP，UDP中校验和具体计算方法 Checksum: 16 bitsThe checksum field is the 16 bit one’s complement of the one’s complement sum of all 16 bi">
@@ -376,7 +376,8 @@
 +--------+--------+--------+--------+
 |  zero  |  PTCL  |    TCP Length   |
 +--------+--------+--------+--------+
-</code></pre><h4 id="层次化路由选择的作用"><a href="#层次化路由选择的作用" class="headerlink" title="层次化路由选择的作用"></a>层次化路由选择的作用</h4><h4 id="输入端口，输出端口需要缓冲区的原因"><a href="#输入端口，输出端口需要缓冲区的原因" class="headerlink" title="输入端口，输出端口需要缓冲区的原因"></a>输入端口，输出端口需要缓冲区的原因</h4><h4 id="MTU与MSS"><a href="#MTU与MSS" class="headerlink" title="MTU与MSS"></a>MTU与MSS</h4><p>MTU：最大传输单元（包含IP头部，但不包含协议栈更下层的头部），对于以太网，典型值为1500字节。</p>
+</code></pre><h4 id="层次化路由选择的作用"><a href="#层次化路由选择的作用" class="headerlink" title="层次化路由选择的作用"></a>层次化路由选择的作用</h4><a id="more"></a>
+<h4 id="输入端口，输出端口需要缓冲区的原因"><a href="#输入端口，输出端口需要缓冲区的原因" class="headerlink" title="输入端口，输出端口需要缓冲区的原因"></a>输入端口，输出端口需要缓冲区的原因</h4><h4 id="MTU与MSS"><a href="#MTU与MSS" class="headerlink" title="MTU与MSS"></a>MTU与MSS</h4><p>MTU：最大传输单元（包含IP头部，但不包含协议栈更下层的头部），对于以太网，典型值为1500字节。</p>
 <p>MSS：最大分段大小。不包含TCP头部信息。典型值为1460字节（因为MTU典型值为1500字节。去除IP头部，TCP头部（如果没有选项的话）。就是1460字节。如果TCP报文段超过了MSS，则在运输层分段。MSS由传输双方协商，由于一般MSS典型值为1460字节。所以一般情况下TCP报文段封装到下层网络层时候，很少会出现IP分片的情况。</p>
 <p>请注意：这里的MSS是针对TCP报文段而言（Maximum Segment size)，对于UDP而言，没有MSS这个概念。UDP直接将应用层报文加上UDP首部封装进IP数据报。如果超出了MTU。则在网络层进行IP分片。我们可以从维基百科中获得相关信息</p>
 <blockquote>
@@ -594,7 +595,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
